@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Scenario, ChapterConfig, PlayerProgress, CompanyMetrics } from '../types/game';
+import type { Scenario, ChapterConfig, PlayerProgress, CompanyMetrics } from '../types/game';
 import { TopBar } from './TopBar';
 import { MetricsPanel } from './MetricsPanel';
 import { ScenarioCard } from './ScenarioCard';

@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { GameScreen, PlayerProgress, Scenario, ChapterId } from '../types/game';
+import type { GameScreen, PlayerProgress, Scenario, ChapterId } from '../types/game';
 import { chapters, scenarios } from '../data/scenarios';
 import {
   createInitialProgress,

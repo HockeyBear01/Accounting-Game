@@ -1,4 +1,4 @@
-import { Scenario, ChapterConfig } from '../types/game';
+import type { Scenario, ChapterConfig } from '../types/game';
 
 export const chapters: ChapterConfig[] = [
   {

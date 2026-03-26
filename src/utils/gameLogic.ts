@@ -1,4 +1,4 @@
-import { PlayerProgress, CompanyMetrics, ChapterId, MetricDelta } from '../types/game';
+import type { PlayerProgress, CompanyMetrics, ChapterId, MetricDelta } from '../types/game';
 
 export const INITIAL_METRICS: CompanyMetrics = {
   cash: 50000,

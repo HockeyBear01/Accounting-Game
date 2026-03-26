@@ -1,4 +1,4 @@
-import { PlayerProgress, ChapterId } from '../types/game';
+import type { PlayerProgress, ChapterId } from '../types/game';
 import { chapters } from '../data/scenarios';
 import {
   getOverallGrade,

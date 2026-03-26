@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CFOFeedback } from '../types/game';
+import type { CFOFeedback } from '../types/game';
 
 interface CFOFeedbackPanelProps {
   feedback: CFOFeedback;

@@ -1,4 +1,4 @@
-import { ChapterConfig } from '../types/game';
+import type { ChapterConfig } from '../types/game';
 
 interface ChapterIntroScreenProps {
   chapter: ChapterConfig;

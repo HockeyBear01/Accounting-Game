@@ -1,4 +1,4 @@
-import { ChapterConfig, PlayerProgress, ChapterId } from '../types/game';
+import type { ChapterConfig, PlayerProgress, ChapterId } from '../types/game';
 import { getChapterGrade, getChapterSummary } from '../utils/gameLogic';
 
 interface ChapterSummaryScreenProps {

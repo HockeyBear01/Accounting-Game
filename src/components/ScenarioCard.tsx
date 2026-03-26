@@ -1,4 +1,4 @@
-import { Scenario, InventoryVisualData, BreakEvenVisualData } from '../types/game';
+import type { Scenario, InventoryVisualData, BreakEvenVisualData } from '../types/game';
 import { formatCurrency } from '../utils/gameLogic';
 
 interface ScenarioCardProps {

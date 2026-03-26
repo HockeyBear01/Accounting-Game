@@ -1,4 +1,4 @@
-import { CompanyMetrics } from '../types/game';
+import type { CompanyMetrics } from '../types/game';
 import { formatCurrency } from '../utils/gameLogic';
 
 interface MetricsPanelProps {

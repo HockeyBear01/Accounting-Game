@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Scenario } from '../types/game';
+import type { Scenario } from '../types/game';
 
 interface InteractionPanelProps {
   scenario: Scenario;

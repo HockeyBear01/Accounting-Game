@@ -1,4 +1,4 @@
-import { PlayerProgress, ChapterConfig } from '../types/game';
+import type { PlayerProgress, ChapterConfig } from '../types/game';
 import { formatNumber } from '../utils/gameLogic';
 
 interface TopBarProps {
