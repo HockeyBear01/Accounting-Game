@@ -513,7 +513,7 @@ export const scenarios: Scenario[] = [
     type: 'multiple-choice',
     options: [
       { id: 'a', label: '$2,150' },
-      { id: 'b', label: '$2,700' },
+      { id: 'b', label: '$2,550' },
       { id: 'c', label: '$2,250' },
       { id: 'd', label: '$2,000' },
     ],
@@ -530,7 +530,7 @@ export const scenarios: Scenario[] = [
     },
     feedback: {
       correct:
-        'Correct. FIFO sells the oldest units first. COGS: 50 × $20 + 50 × $25 = $2,250. Ending inventory: 30 units @ $25 + 60 units @ $30 = $750 + $1,800 = $2,550... wait — let\'s recount: 190 total units minus 100 sold = 90 units remaining. Those 90 come from the newest layers: 30 from Batch 2 at $25 ($750) + 60 from Batch 3 at $30 ($1,800) = $2,550. Actually the answer is $2,550... Hmm, let\'s recalculate: 30×$25 + 60×$30 = $750+$1,800 = $2,550. The correct answer here is $2,700.',
+        'Correct. Under FIFO, the oldest units are sold first: all 50 units from Batch 1 at $20 = $1,000, then 50 units from Batch 2 at $25 = $1,250. Total COGS = $2,250. That leaves 30 units from Batch 2 at $25 and all 60 units from Batch 3 at $30 as ending inventory. Ending inventory = (30 × $25) + (60 × $30) = $750 + $1,800 = $2,550.',
       incorrect:
         'Not quite. Under FIFO, COGS uses the oldest layers first: all 50 units at $20 = $1,000, then 50 units at $25 = $1,250. Total COGS = $2,250. That leaves 30 units at $25 and 60 units at $30 as ending inventory. Ending inventory = (30 × $25) + (60 × $30) = $750 + $1,800 = $2,550.',
       keyInsight:
@@ -626,18 +626,18 @@ export const scenarios: Scenario[] = [
     question: 'Which inventory method should NorthStar recommend to the CFO?',
     type: 'multiple-choice',
     options: [
-      { id: 'a', label: 'LIFO — it always maximizes net income' },
+      { id: 'a', label: 'LIFO — it always maximizes net income regardless of price direction' },
       { id: 'b', label: 'FIFO — in falling prices, FIFO produces higher COGS' },
-      { id: 'c', label: 'FIFO — in falling prices, FIFO produces lower COGS and higher net income' },
+      { id: 'c', label: 'LIFO — in falling prices, LIFO sells newer (cheaper) units first, producing lower COGS and higher net income' },
       { id: 'd', label: 'The method choice has no effect on net income' },
     ],
     correctAnswer: 'c',
     difficulty: 'hard',
     feedback: {
       correct:
-        'Correct. When prices are falling, the oldest (most expensive) units are sold first under FIFO. But since prices are now lower, FIFO actually assigns higher costs to older sold units... Wait — in falling prices, older units cost MORE. FIFO sells older (higher-cost) units first, producing higher COGS. LIFO sells newer (lower-cost) units first, producing lower COGS and higher income. So to maximize income in falling prices, LIFO is preferred.',
+        'Correct. In a period of falling prices, older units cost MORE and newer units cost LESS. LIFO sells the newest (cheapest) units first, resulting in lower COGS and higher gross profit. FIFO sells the oldest (most expensive) units first, producing higher COGS and lower net income. To maximize reported income in falling prices, LIFO is the right choice.',
       incorrect:
-        'In falling prices, the relationship reverses: LIFO (selling newer, cheaper units first) produces lower COGS and higher net income. FIFO sells older, higher-cost units first, producing higher COGS and lower income.',
+        'In falling prices, the relationship reverses from the rising-price scenario. LIFO sells the newest (lower-cost) units first, producing lower COGS and higher net income. FIFO sells the oldest (higher-cost) units first, resulting in higher COGS and lower income. The CFO should choose LIFO to maximize reported income.',
       keyInsight:
         'The relative advantage of FIFO vs LIFO flips depending on price direction. Rising prices favor LIFO for tax savings; falling prices favor LIFO for income maximization.',
       commonMistake:
@@ -752,7 +752,7 @@ export const scenarios: Scenario[] = [
       { id: 'c', label: '1,500 units' },
       { id: 'd', label: '1,000 units' },
     ],
-    correctAnswer: 'a',
+    correctAnswer: 'c',
     difficulty: 'medium',
     visualData: {
       type: 'breakeven',
@@ -762,9 +762,9 @@ export const scenarios: Scenario[] = [
     },
     feedback: {
       correct:
-        'Correct. Target Units = (Fixed Costs + Target Profit) ÷ Contribution Margin = ($35,000 + $25,000) ÷ ($100 - $60) = $60,000 ÷ $40 = 1,500. Wait — that is 1,500. Let me recalculate: $60,000 ÷ $40 = 1,500 units. Hmm, the correct answer is 875. Let me recheck: ($35,000 + $25,000) ÷ $40 = $60,000 ÷ $40 = 1,500 units.',
+        'Correct. Target Units = (Fixed Costs + Target Profit) ÷ Contribution Margin per Unit = ($35,000 + $25,000) ÷ ($100 - $60) = $60,000 ÷ $40 = 1,500 units. At 1,500 units: Revenue $150,000 - Variable Costs $90,000 - Fixed Costs $35,000 = Profit $25,000.',
       incorrect:
-        'To find units needed for a target profit, add the profit target to fixed costs, then divide by contribution margin: ($35,000 + $25,000) ÷ ($100 - $60) = $60,000 ÷ $40 = 1,500 units.',
+        'Not quite. To find units needed for a target profit, add the profit target to fixed costs, then divide by the contribution margin: ($35,000 + $25,000) ÷ ($100 - $60) = $60,000 ÷ $40 = 1,500 units.',
       keyInsight:
         'Target profit analysis extends break-even by treating desired profit as an additional "fixed cost" to cover. The contribution margin per unit must cover both fixed costs and target profit.',
       commonMistake:
@@ -875,7 +875,7 @@ export const scenarios: Scenario[] = [
       { id: 'c', label: '2,000 units' },
       { id: 'd', label: '1,250 units' },
     ],
-    correctAnswer: 'b',
+    correctAnswer: 'd',
     difficulty: 'hard',
     visualData: {
       type: 'breakeven',
@@ -885,9 +885,9 @@ export const scenarios: Scenario[] = [
     },
     feedback: {
       correct:
-        'Correct. Current profit: (1,000 × $50) - $30,000 = $20,000. New CM = $70 - $30 = $40. Units needed: ($30,000 + $20,000) ÷ $40 = 1,250 units. Wait — $50,000 ÷ $40 = 1,250. So the answer is 1,250. Let me recheck: current profit = 1,000 × ($80-$30) - $30,000 = $50,000 - $30,000 = $20,000. New units for same profit: ($30,000 + $20,000) ÷ ($70-$30) = $50,000 ÷ $40 = 1,250 units.',
+        'Correct. First, calculate current profit: 1,000 units × ($80 - $30 CM) - $30,000 fixed = $50,000 - $30,000 = $20,000. At the new $70 price, the contribution margin drops to $70 - $30 = $40/unit. To earn the same $20,000 profit: ($30,000 + $20,000) ÷ $40 = $50,000 ÷ $40 = 1,250 units.',
       incorrect:
-        'To maintain current profit after a price cut: first calculate current profit = (1,000 × $50 CM) - $30,000 = $20,000. At new price, CM = $70 - $30 = $40. Required units = ($30,000 + $20,000) ÷ $40 = 1,250 units.',
+        'Not quite. First calculate current profit: 1,000 × ($80 - $30) - $30,000 = $20,000. At the new $70 price, CM = $70 - $30 = $40. Required units to maintain $20,000 profit: ($30,000 + $20,000) ÷ $40 = 1,250 units.',
       keyInsight:
         'Price cuts reduce the contribution margin per unit, requiring more volume to maintain the same profit. This is why pricing decisions must always be paired with volume analysis.',
       commonMistake:
@@ -1100,7 +1100,7 @@ export const scenarios: Scenario[] = [
     chapterId: 'final-round',
     title: 'Operating Leverage',
     description:
-      'NorthStar has two product lines. Product A: high fixed costs ($80,000), low variable cost ($20/unit), price $100. Product B: low fixed costs ($20,000), high variable cost ($70/unit), price $100. Both break even at 1,000 units. Sales are projected at 2,000 units.',
+      'NorthStar has two product lines. Product A: high fixed costs ($80,000), low variable cost ($20/unit), price $100. Product B: low fixed costs ($30,000), high variable cost ($70/unit), price $100. Both break even at 1,000 units. Sales are projected at 2,000 units.',
     question: 'Which product generates more profit at 2,000 units — and why?',
     type: 'multiple-choice',
     options: [
@@ -1113,9 +1113,9 @@ export const scenarios: Scenario[] = [
     difficulty: 'hard',
     feedback: {
       correct:
-        'Correct. Product A: Profit = (2,000 × $80 CM) - $80,000 = $80,000. Product B: Profit = (2,000 × $30 CM) - $20,000 = $40,000. Product A generates double the profit because of its higher contribution margin per unit.',
+        'Correct. Product A: Profit = (2,000 × $80 CM) - $80,000 = $160,000 - $80,000 = $80,000. Product B: Profit = (2,000 × $30 CM) - $30,000 = $60,000 - $30,000 = $30,000. Product A generates nearly three times the profit because of its higher contribution margin per unit.',
       incorrect:
-        'Not quite. Calculate profit for each: Product A: 2,000 × ($100-$20) - $80,000 = $160,000 - $80,000 = $80,000. Product B: 2,000 × ($100-$70) - $20,000 = $60,000 - $20,000 = $40,000. Product A generates twice the profit above break-even.',
+        'Not quite. Calculate profit for each: Product A: 2,000 × ($100-$20) - $80,000 = $160,000 - $80,000 = $80,000. Product B: 2,000 × ($100-$70) - $30,000 = $60,000 - $30,000 = $30,000. Product A generates far more profit above break-even.',
       keyInsight:
         'Operating leverage means that a business with high fixed costs and low variable costs generates disproportionately more profit as volume grows beyond break-even. The "lever" is the contribution margin.',
       commonMistake:
@@ -1123,7 +1123,7 @@ export const scenarios: Scenario[] = [
       whyItMatters:
         'Operating leverage is a double-edged sword: high-leverage businesses profit more when sales exceed break-even but lose more when sales fall short. This risk-return trade-off is central to business model design.',
       explainMore:
-        'Both break even at 1,000 units (verify: A = $80,000 ÷ $80 = 1,000; B = $20,000 ÷ $30 = 667 — actually different break-evens). At 2,000 units: A earns $80,000, B earns $40,000. Product A\'s higher CM ($80 vs $30) means each unit beyond break-even contributes much more to profit. This is operating leverage — fixed costs are a "lever" that amplifies profit growth above break-even.',
+        'Both products break even at exactly 1,000 units (verify: A = $80,000 ÷ $80 CM = 1,000; B = $30,000 ÷ $30 CM = 1,000). At 2,000 units: A earns $80,000, B earns $30,000. Product A\'s higher CM ($80 vs $30) means each unit beyond break-even contributes far more to profit. This is operating leverage — the higher the fixed-cost structure, the more each incremental sale is worth once break-even is cleared.',
     },
     metricEffects: {
       correct: { cash: 6000, profit: 4000, reputation: 5 },
