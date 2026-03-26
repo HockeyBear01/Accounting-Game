@@ -82,8 +82,3 @@ src/
 | Teaching effectiveness | Every answer includes key insights, common mistakes, and business relevance |
 | Engagement | Tycoon metrics, streak bonuses, grades, and CFO mentor character |
 | Usability | Clean dashboard UI, high contrast, clear visual hierarchy |
-
-## Credits
-
-Created by **Jonas Lang** and **Jaime Gandy**
-BUSI 7230: Cost Analysis and Systems
