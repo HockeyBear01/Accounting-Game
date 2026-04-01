@@ -4,6 +4,7 @@ import type { Scenario } from '../types/game';
 interface InteractionPanelProps {
   scenario: Scenario;
   onSubmit: (answer: string) => void;
+  onSkip: () => void;
   selectedAnswer: string | null;
   showFeedback: boolean;
   isCorrect: boolean | null;
@@ -12,6 +13,7 @@ interface InteractionPanelProps {
 export function InteractionPanel({
   scenario,
   onSubmit,
+  onSkip,
   selectedAnswer,
   showFeedback,
   isCorrect,
@@ -60,6 +62,16 @@ export function InteractionPanel({
           <p className="mt-2 text-sm text-slate-600">
             Correct answer: <span className="font-bold text-success-700">{scenario.correctAnswer}</span>
           </p>
+        )}
+        {!showFeedback && (
+          <div className="flex justify-center mt-3">
+            <button
+              onClick={onSkip}
+              className="text-xs text-slate-400 hover:text-slate-600 transition-colors py-1.5 px-4 rounded-lg hover:bg-slate-100"
+            >
+              Skip Scenario →
+            </button>
+          </div>
         )}
       </div>
     );
@@ -113,6 +125,16 @@ export function InteractionPanel({
           );
         })}
       </div>
+      {!showFeedback && (
+        <div className="flex justify-center mt-3">
+          <button
+            onClick={onSkip}
+            className="text-xs text-slate-400 hover:text-slate-600 transition-colors py-1.5 px-4 rounded-lg hover:bg-slate-100"
+          >
+            Skip Scenario →
+          </button>
+        </div>
+      )}
     </div>
   );
 }

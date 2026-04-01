@@ -82,6 +82,7 @@ export function GameplayScreen({
         <InteractionPanel
           scenario={scenario}
           onSubmit={onSubmit}
+          onSkip={onSkip}
           selectedAnswer={selectedAnswer}
           showFeedback={showFeedback}
           isCorrect={lastAnswerCorrect}

@@ -1,0 +1,66 @@
+diff --git a/src/components/GameplayScreen.tsx b/src/components/GameplayScreen.tsx
+index ab840ab..1adc86e 100644
+--- a/src/components/GameplayScreen.tsx
++++ b/src/components/GameplayScreen.tsx
+@@ -82,6 +82,7 @@ export function GameplayScreen({
+         <InteractionPanel
+           scenario={scenario}
+           onSubmit={onSubmit}
++          onSkip={onSkip}
+           selectedAnswer={selectedAnswer}
+           showFeedback={showFeedback}
+           isCorrect={lastAnswerCorrect}
+diff --git a/src/components/InteractionPanel.tsx b/src/components/InteractionPanel.tsx
+index 8da2496..d2d2263 100644
+--- a/src/components/InteractionPanel.tsx
++++ b/src/components/InteractionPanel.tsx
+@@ -4,6 +4,7 @@ import type { Scenario } from '../types/game';
+ interface InteractionPanelProps {
+   scenario: Scenario;
+   onSubmit: (answer: string) => void;
++  onSkip: () => void;
+   selectedAnswer: string | null;
+   showFeedback: boolean;
+   isCorrect: boolean | null;
+@@ -12,6 +13,7 @@ interface InteractionPanelProps {
+ export function InteractionPanel({
+   scenario,
+   onSubmit,
++  onSkip,
+   selectedAnswer,
+   showFeedback,
+   isCorrect,
+@@ -61,6 +63,16 @@ export function InteractionPanel({
+             Correct answer: <span className="font-bold text-success-700">{scenario.correctAnswer}</span>
+           </p>
+         )}
++        {!showFeedback && (
++          <div className="flex justify-center mt-3">
++            <button
++              onClick={onSkip}
++              className="text-xs text-slate-400 hover:text-slate-600 transition-colors py-1.5 px-4 rounded-lg hover:bg-slate-100"
++            >
++              Skip Scenario →
++            </button>
++          </div>
++        )}
+       </div>
+     );
+   }
+@@ -113,6 +125,16 @@ export function InteractionPanel({
+           );
+         })}
+       </div>
++      {!showFeedback && (
++        <div className="flex justify-center mt-3">
++          <button
++            onClick={onSkip}
++            className="text-xs text-slate-400 hover:text-slate-600 transition-colors py-1.5 px-4 rounded-lg hover:bg-slate-100"
++          >
++            Skip Scenario →
++          </button>
++        </div>
++      )}
+     </div>
+   );
+ }
