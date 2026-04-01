@@ -123,6 +123,22 @@ export function useGameState() {
     setShowFeedback(false);
   }, []);
 
+  const skipChapter = useCallback(() => {
+    setLastAnswerCorrect(null);
+    setSelectedAnswer(null);
+    setShowFeedback(false);
+    if (progress.currentChapter + 1 < chapters.length) {
+      setProgress((prev) => ({
+        ...prev,
+        currentChapter: prev.currentChapter + 1,
+        currentScenario: 0,
+      }));
+      setScreen('chapter-intro');
+    } else {
+      setScreen('final-results');
+    }
+  }, [progress.currentChapter]);
+
   return {
     screen,
     progress,
@@ -139,6 +155,7 @@ export function useGameState() {
     submitAnswer,
     nextScenario,
     nextChapter,
+    skipChapter,
     restartGame,
   };
 }

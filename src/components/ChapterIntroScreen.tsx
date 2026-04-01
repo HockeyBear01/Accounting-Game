@@ -3,10 +3,14 @@ import type { ChapterConfig } from '../types/game';
 interface ChapterIntroScreenProps {
   chapter: ChapterConfig;
   chapterIndex: number;
+  totalChapters: number;
   onStart: () => void;
+  onSkip: () => void;
 }
 
-export function ChapterIntroScreen({ chapter, chapterIndex, onStart }: ChapterIntroScreenProps) {
+export function ChapterIntroScreen({ chapter, chapterIndex, totalChapters, onStart, onSkip }: ChapterIntroScreenProps) {
+  const isLastChapter = chapterIndex === totalChapters - 1;
+
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
       <div className="max-w-xl w-full animate-fade-in">
@@ -47,6 +51,15 @@ export function ChapterIntroScreen({ chapter, chapterIndex, onStart }: ChapterIn
             >
               Start Chapter →
             </button>
+
+            {!isLastChapter && (
+              <button
+                onClick={onSkip}
+                className="w-full mt-3 py-2.5 bg-transparent text-slate-400 rounded-xl font-medium text-xs hover:text-slate-600 hover:bg-slate-50 transition-colors border border-slate-200"
+              >
+                Skip to Next Chapter →
+              </button>
+            )}
           </div>
         </div>
       </div>

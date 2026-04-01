@@ -23,6 +23,7 @@ function App() {
     submitAnswer,
     nextScenario,
     nextChapter,
+    skipChapter,
     restartGame,
   } = useGameState();
 
@@ -35,7 +36,9 @@ function App() {
         <ChapterIntroScreen
           chapter={currentChapter}
           chapterIndex={progress.currentChapter}
+          totalChapters={chapters.length}
           onStart={startChapter}
+          onSkip={skipChapter}
         />
       ) : null;
 
@@ -54,6 +57,8 @@ function App() {
           showFeedback={showFeedback}
           onSubmit={submitAnswer}
           onNext={nextScenario}
+          onSkip={skipChapter}
+          isLastChapter={progress.currentChapter === chapters.length - 1}
         />
       ) : null;
 

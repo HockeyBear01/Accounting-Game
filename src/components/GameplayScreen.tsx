@@ -19,6 +19,8 @@ interface GameplayScreenProps {
   showFeedback: boolean;
   onSubmit: (answer: string) => void;
   onNext: () => void;
+  onSkip: () => void;
+  isLastChapter: boolean;
 }
 
 export function GameplayScreen({
@@ -34,6 +36,8 @@ export function GameplayScreen({
   showFeedback,
   onSubmit,
   onNext,
+  onSkip,
+  isLastChapter,
 }: GameplayScreenProps) {
   const [prevMetrics, setPrevMetrics] = useState<CompanyMetrics | undefined>(undefined);
 
@@ -90,6 +94,18 @@ export function GameplayScreen({
             isCorrect={lastAnswerCorrect}
             onNext={onNext}
           />
+        )}
+
+        {/* Skip Chapter */}
+        {!isLastChapter && (
+          <div className="flex justify-center pb-2">
+            <button
+              onClick={onSkip}
+              className="text-xs text-slate-400 hover:text-slate-600 transition-colors py-2 px-4 rounded-lg hover:bg-slate-200"
+            >
+              Skip to Next Chapter →
+            </button>
+          </div>
         )}
       </div>
     </div>
