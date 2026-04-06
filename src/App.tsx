@@ -12,7 +12,8 @@ function App() {
     progress,
     currentChapter,
     currentScenario,
-    chapterScenarios,
+    selectedScenarios,
+    canPlayMore,
     lastAnswerCorrect,
     selectedAnswer,
     showFeedback,
@@ -25,6 +26,7 @@ function App() {
     nextChapter,
     skipChapter,
     restartGame,
+    playMore,
   } = useGameState();
 
   switch (screen) {
@@ -48,7 +50,7 @@ function App() {
           chapter={currentChapter}
           scenario={currentScenario}
           scenarioIndex={progress.currentScenario}
-          totalChapterScenarios={chapterScenarios.length}
+          totalChapterScenarios={selectedScenarios.length}
           progress={progress}
           totalScenariosInGame={totalScenariosInGame}
           completedScenarios={completedScenarios}
@@ -69,7 +71,9 @@ function App() {
           chapterIndex={progress.currentChapter}
           progress={progress}
           isLastChapter={progress.currentChapter === chapters.length - 1}
+          canPlayMore={canPlayMore}
           onNext={nextChapter}
+          onPlayMore={playMore}
         />
       ) : null;
 
