@@ -2307,6 +2307,137 @@ export const scenarios: Scenario[] = [
     },
   },
 
+  // CHAPTER 3 — BREAK-EVEN EXTENDED (3 new)
+
+  {
+    id: 'be3-01',
+    reviewTip: 'When individual units are hard to define (e.g., multiple products), use the CM ratio form: Break-even revenue = Fixed Costs ÷ CM Ratio.',
+    chapterId: 'break-even',
+    title: 'Break-Even in Dollars (Revenue)',
+    description:
+      'NorthStar sells a diverse mix of products, making it impractical to define a single "unit." Total fixed costs are $60,000 per month. The weighted-average contribution margin ratio across all products is 40%.',
+    question: 'What is NorthStar\'s break-even point in total sales revenue?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: '$24,000' },
+      { id: 'b', label: '$100,000' },
+      { id: 'c', label: '$150,000' },
+      { id: 'd', label: '$240,000' },
+    ],
+    correctAnswer: 'c',
+    difficulty: 'easy',
+    visualData: {
+      type: 'breakeven',
+      fixedCosts: 60000,
+      variableCostPerUnit: 60,
+      pricePerUnit: 100,
+    },
+    feedback: {
+      correct:
+        'Correct. Break-even revenue = Fixed Costs ÷ CM Ratio = $60,000 ÷ 0.40 = $150,000. At $150,000 in sales, the 40% CM generates $60,000 — exactly covering fixed costs.',
+      incorrect:
+        'Not quite. The formula is: Break-even revenue = Fixed Costs ÷ CM Ratio = $60,000 ÷ 0.40 = $150,000. A 40% CM ratio means 40 cents of every sales dollar covers fixed costs and profit.',
+      keyInsight:
+        'The revenue form of break-even (Fixed Costs ÷ CM Ratio) is useful when you sell multiple products and cannot easily define "units." It tells you the total dollar volume needed to cover all fixed costs.',
+      commonMistake:
+        'Dividing fixed costs by the variable cost ratio (60%) instead of the CM ratio (40%) gives $100,000 — which is too low. The variable cost ratio is the complement of the CM ratio, not the CM ratio itself.',
+      whyItMatters:
+        'Most real businesses sell many products at different prices. The revenue-based break-even lets managers set a single sales target in dollars without needing per-unit data for every product.',
+      explainMore:
+        'CM ratio = 1 − Variable Cost Ratio = 1 − 0.60 = 0.40 (40%).\nBreak-even revenue = $60,000 ÷ 0.40 = $150,000.\nVerification: Revenue $150,000 × 40% CM ratio = $60,000 CM − $60,000 fixed costs = $0 operating income ✓.\n\nIf you mistakenly divide by 0.60 (the VC ratio): $60,000 ÷ 0.60 = $100,000. At $100,000 revenue, CM = $40,000 — not enough to cover $60,000 in fixed costs.',
+    },
+    metricEffects: {
+      correct: { profit: 2000, reputation: 5 },
+      incorrect: { profit: -800, reputation: -3 },
+    },
+  },
+
+  {
+    id: 'be3-02',
+    reviewTip: 'Margin of safety = Actual Sales − Break-Even Sales. As a percentage: (Actual − Break-Even) ÷ Actual × 100%. It measures the cushion before losses begin.',
+    chapterId: 'break-even',
+    title: 'Margin of Safety',
+    description:
+      'NorthStar currently sells 1,200 units per month. The break-even point has been calculated at 900 units per month.',
+    question: 'What is NorthStar\'s margin of safety in units and as a percentage?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: '300 units; 33.3%' },
+      { id: 'b', label: '300 units; 25%' },
+      { id: 'c', label: '900 units; 75%' },
+      { id: 'd', label: '1,200 units; 25%' },
+    ],
+    correctAnswer: 'b',
+    difficulty: 'medium',
+    visualData: {
+      type: 'breakeven',
+      fixedCosts: 45000,
+      variableCostPerUnit: 25,
+      pricePerUnit: 75,
+    },
+    feedback: {
+      correct:
+        'Correct. Margin of safety in units = 1,200 − 900 = 300 units. Margin of safety % = 300 ÷ 1,200 = 25%. Sales can drop 25% before NorthStar reaches break-even.',
+      incorrect:
+        'Not quite. Margin of safety = Actual sales − Break-even sales = 1,200 − 900 = 300 units. As a percentage: 300 ÷ 1,200 (actual sales) = 25%. Always divide by actual sales, not break-even sales.',
+      keyInsight:
+        'Margin of safety measures how far sales can drop before the business starts losing money — it is a key risk metric. A 25% margin means NorthStar can absorb a 25% sales decline and still break even.',
+      commonMistake:
+        'Dividing the 300-unit cushion by the break-even volume (900) instead of actual sales (1,200) gives 33.3% — an overstated safety margin. The denominator must be actual (or budgeted) sales.',
+      whyItMatters:
+        'The margin of safety helps managers assess operating risk. A thin margin signals vulnerability to downturns; a wide margin provides comfort that moderate sales declines won\'t trigger losses.',
+      explainMore:
+        'Margin of safety in units: 1,200 − 900 = 300 units.\nMargin of safety in dollars: 300 × selling price per unit.\nMargin of safety %: 300 ÷ 1,200 = 25%.\n\nInterpretation: NorthStar is operating 300 units (or 25%) above its break-even point. If sales fall by up to 300 units (to 900), the company still breaks even. Any decline beyond 300 units results in a loss.',
+    },
+    metricEffects: {
+      correct: { profit: 2500, cash: 3000, reputation: 5 },
+      incorrect: { profit: -1000, reputation: -3 },
+    },
+  },
+
+  {
+    id: 'be3-03',
+    reviewTip: 'For multi-product break-even, compute a weighted-average CM per bundle using the sales mix, then divide fixed costs by that weighted CM to get break-even bundles.',
+    chapterId: 'break-even',
+    title: 'Multi-Product Break-Even with Sales Mix',
+    description:
+      'NorthStar sells Product A and Product B in a consistent 3:1 sales mix (3 units of A for every 1 unit of B). Product A has a contribution margin of $20 per unit. Product B has a contribution margin of $60 per unit. Total fixed costs are $90,000 per month.',
+    question: 'How many units of Product A and Product B must NorthStar sell to break even?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: '4,500 units of A and 1,500 units of B' },
+      { id: 'b', label: '9,000 units of A and 3,000 units of B' },
+      { id: 'c', label: '3,000 units of A and 1,000 units of B' },
+      { id: 'd', label: '2,250 units of A and 750 units of B' },
+    ],
+    correctAnswer: 'd',
+    difficulty: 'hard',
+    visualData: {
+      type: 'breakeven',
+      fixedCosts: 90000,
+      variableCostPerUnit: 30,
+      pricePerUnit: 60,
+    },
+    feedback: {
+      correct:
+        'Correct. Weighted-average CM per unit = (3 × $20 + 1 × $60) ÷ 4 = $120 ÷ 4 = $30. Break-even in total units = $90,000 ÷ $30 = 3,000 units. Split by the 3:1 mix: Product A = 3,000 × 3/4 = 2,250 units. Product B = 3,000 × 1/4 = 750 units.',
+      incorrect:
+        'Not quite. Step 1: Weighted-average CM per unit = (3 × $20 + 1 × $60) ÷ 4 = $30. Step 2: Break-even total units = $90,000 ÷ $30 = 3,000 units. Step 3: Allocate by mix — A = 3,000 × (3/4) = 2,250 units, B = 3,000 × (1/4) = 750 units. Verify: (2,250 × $20) + (750 × $60) = $45,000 + $45,000 = $90,000 ✓.',
+      keyInsight:
+        'The weighted-average CM approach converts a multi-product firm into an equivalent single-product problem by blending CMs according to the sales mix. This is how real firms with diverse product lines compute break-even.',
+      commonMistake:
+        'Using a simple average of the two CMs (($20 + $60) ÷ 2 = $40) ignores the 3:1 sales mix and understates the break-even point. The weights must reflect how many units of each product are actually sold.',
+      whyItMatters:
+        'Most businesses sell more than one product. The weighted-average CM method — combined with an assumed constant sales mix — is the standard approach for multi-product break-even analysis in managerial accounting.',
+      explainMore:
+        'Sales mix: 3 units of A for every 1 unit of B → A is 75% of units, B is 25%.\nWeighted-average CM per unit: (0.75 × $20) + (0.25 × $60) = $15 + $15 = $30.\nBreak-even total units: $90,000 ÷ $30 = 3,000 units.\nProduct A: 3,000 × 0.75 = 2,250 units. Product B: 3,000 × 0.25 = 750 units.\n\nAlternatively, define a bundle as 3A + 1B:\nBundle CM = (3 × $20) + (1 × $60) = $120.\nBreak-even bundles = $90,000 ÷ $120 = 750 bundles.\nA: 750 × 3 = 2,250. B: 750 × 1 = 750. Same answer either way.',
+    },
+    metricEffects: {
+      correct: { profit: 3000, cash: 5000, reputation: 7 },
+      incorrect: { profit: -2000, reputation: -3 },
+    },
+  },
+
   // CHAPTER 4 — FINAL ROUND / INTEGRATED (2 new)
 
   {
