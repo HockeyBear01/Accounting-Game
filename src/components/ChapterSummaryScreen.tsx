@@ -45,7 +45,7 @@ export function ChapterSummaryScreen({
           <div className={`px-6 py-6 text-center ${pct >= 70 ? 'bg-gradient-to-r from-success-600 to-success-700' : 'bg-gradient-to-r from-primary-600 to-primary-700'}`}>
             <div className="text-xs text-white/70 uppercase tracking-wider mb-1">Chapter {chapterIndex + 1} Complete</div>
             <h2 className="text-xl font-bold text-white mb-3">{chapter.title}</h2>
-            <div className="inline-flex items-center gap-4 bg-white/20 backdrop-blur rounded-xl px-6 py-3">
+            <div className="inline-flex flex-wrap items-center justify-center gap-4 bg-white/20 backdrop-blur rounded-xl px-6 py-3">
               <div className="text-center">
                 <div className="text-3xl font-bold text-white">{grade}</div>
                 <div className="text-xs text-white/70">Grade</div>

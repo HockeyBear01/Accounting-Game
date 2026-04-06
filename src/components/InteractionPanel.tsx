@@ -52,7 +52,7 @@ export function InteractionPanel({
             <button
               onClick={handleNumericSubmit}
               disabled={!numericInput.trim()}
-              className="px-6 py-3 bg-primary-600 text-white rounded-lg font-medium text-sm hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="px-6 py-3 min-h-[44px] bg-primary-600 text-white rounded-lg font-medium text-sm hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Submit
             </button>
@@ -67,7 +67,7 @@ export function InteractionPanel({
           <div className="flex justify-center mt-3">
             <button
               onClick={onSkip}
-              className="text-xs text-slate-400 hover:text-slate-600 transition-colors py-1.5 px-4 rounded-lg hover:bg-slate-100"
+              className="text-sm text-slate-400 hover:text-slate-600 transition-colors py-3 px-4 min-h-[44px] rounded-lg hover:bg-slate-100"
             >
               Skip Scenario →
             </button>
@@ -101,7 +101,7 @@ export function InteractionPanel({
               key={option.id}
               onClick={() => !showFeedback && onSubmit(option.id)}
               disabled={showFeedback}
-              className={`w-full text-left p-4 border-2 rounded-lg text-sm transition-all ${optionStyle}`}
+              className={`w-full text-left p-4 min-h-[44px] border-2 rounded-lg text-sm transition-all ${optionStyle}`}
             >
               <div className="flex items-start gap-3">
                 <span className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold ${
@@ -129,7 +129,7 @@ export function InteractionPanel({
         <div className="flex justify-center mt-3">
           <button
             onClick={onSkip}
-            className="text-xs text-slate-400 hover:text-slate-600 transition-colors py-1.5 px-4 rounded-lg hover:bg-slate-100"
+            className="text-sm text-slate-400 hover:text-slate-600 transition-colors py-3 px-4 min-h-[44px] rounded-lg hover:bg-slate-100"
           >
             Skip Scenario →
           </button>

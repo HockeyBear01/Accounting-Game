@@ -57,7 +57,7 @@ export function TopBar({ chapter, progress, totalScenarios, completedScenarios, 
             {chapter && chapter.formulas.length > 0 && (
               <button
                 onClick={() => setShowFormulas(true)}
-                className="flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-primary-700 bg-slate-100 hover:bg-primary-50 border border-slate-200 hover:border-primary-200 px-2.5 py-1.5 rounded-lg transition-colors"
+                className="flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-primary-700 bg-slate-100 hover:bg-primary-50 border border-slate-200 hover:border-primary-200 px-3 py-2.5 min-h-[44px] rounded-lg transition-colors"
                 title="Open Formula Sheet"
                 aria-label="Open Formula Sheet"
               >

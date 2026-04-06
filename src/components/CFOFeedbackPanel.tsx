@@ -58,7 +58,7 @@ export function CFOFeedbackPanel({ feedback, isCorrect, onNext }: CFOFeedbackPan
         {/* Explain More */}
         <button
           onClick={() => setShowExplainMore(!showExplainMore)}
-          className="flex items-center gap-2 text-xs font-medium text-primary-600 hover:text-primary-700 transition-colors mb-4"
+          className="flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors mb-4 min-h-[44px] py-2"
         >
           <span className={`transition-transform ${showExplainMore ? 'rotate-90' : ''}`}>▶</span>
           {showExplainMore ? 'Show Less' : 'Explain More'}

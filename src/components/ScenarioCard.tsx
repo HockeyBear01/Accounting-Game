@@ -51,7 +51,7 @@ function BreakEvenVisual({ data }: { data: BreakEvenVisualData }) {
   return (
     <div className="mt-4 bg-slate-50 rounded-lg p-4">
       <h4 className="text-sm font-semibold text-slate-700 mb-3">Cost & Revenue Data</h4>
-      <div className="grid grid-cols-3 gap-3 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
         <div className="bg-white rounded-lg p-3 border border-slate-200 text-center">
           <div className="text-xs text-slate-500 mb-1">Fixed Costs</div>
           <div className="text-sm font-bold text-slate-800">{formatCurrency(data.fixedCosts)}</div>
@@ -73,13 +73,13 @@ function BreakEvenVisual({ data }: { data: BreakEvenVisualData }) {
         </div>
         <div className="relative h-32">
           {/* Y-axis labels */}
-          <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-slate-400 pr-2">
+          <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-[10px] sm:text-xs text-slate-400 pr-1 sm:pr-2 max-w-[60px] sm:max-w-none truncate">
             <span>{formatCurrency(maxUnits * data.pricePerUnit)}</span>
             <span>{formatCurrency(data.fixedCosts)}</span>
             <span>$0</span>
           </div>
           {/* Chart area */}
-          <div className="ml-16 relative h-full">
+          <div className="ml-14 sm:ml-16 relative h-full">
             <svg className="w-full h-full" viewBox={`0 0 ${points * 50} 120`} preserveAspectRatio="none">
               {/* Revenue line */}
               <polyline
@@ -118,7 +118,7 @@ function BreakEvenVisual({ data }: { data: BreakEvenVisualData }) {
             </svg>
           </div>
         </div>
-        <div className="ml-16 flex justify-between text-xs text-slate-400 mt-1">
+        <div className="ml-14 sm:ml-16 flex justify-between text-xs text-slate-400 mt-1">
           <span>0 units</span>
           <span>{Math.round(maxUnits)} units</span>
         </div>
@@ -157,7 +157,7 @@ export function ScenarioCard({ scenario, scenarioIndex, totalScenarios }: Scenar
       </div>
 
       <h3 className="text-lg font-bold text-slate-800 mb-2">{scenario.title}</h3>
-      <p className="text-sm text-slate-600 leading-relaxed mb-4">{scenario.description}</p>
+      <p className="text-base text-slate-600 leading-relaxed mb-4">{scenario.description}</p>
 
       {scenario.visualData?.type === 'inventory' && (
         <InventoryVisual data={scenario.visualData as InventoryVisualData} />
@@ -167,7 +167,7 @@ export function ScenarioCard({ scenario, scenarioIndex, totalScenarios }: Scenar
       )}
 
       <div className="mt-4 p-4 bg-primary-50 rounded-lg border border-primary-100">
-        <p className="text-sm font-semibold text-primary-800">{scenario.question}</p>
+        <p className="text-base font-semibold text-primary-800">{scenario.question}</p>
       </div>
     </div>
   );
