@@ -24,6 +24,7 @@ export function createInitialProgress(): PlayerProgress {
     },
     metrics: { ...INITIAL_METRICS },
     answeredScenarios: [],
+    skippedScenarios: [],
   };
 }
 

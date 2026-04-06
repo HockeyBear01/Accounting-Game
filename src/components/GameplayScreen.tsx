@@ -19,6 +19,7 @@ interface GameplayScreenProps {
   showFeedback: boolean;
   onSubmit: (answer: string) => void;
   onNext: () => void;
+  onSkipScenario: () => void;
   onSkip: () => void;
   isLastChapter: boolean;
 }
@@ -36,6 +37,7 @@ export function GameplayScreen({
   showFeedback,
   onSubmit,
   onNext,
+  onSkipScenario,
   onSkip,
   isLastChapter,
 }: GameplayScreenProps) {
@@ -82,7 +84,7 @@ export function GameplayScreen({
         <InteractionPanel
           scenario={scenario}
           onSubmit={onSubmit}
-          onSkip={onSkip}
+          onSkip={onSkipScenario}
           selectedAnswer={selectedAnswer}
           showFeedback={showFeedback}
           isCorrect={lastAnswerCorrect}
