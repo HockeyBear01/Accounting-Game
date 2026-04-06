@@ -98,6 +98,7 @@ export interface PlayerProgress {
   chapterScores: Record<ChapterId, { correct: number; total: number }>;
   metrics: CompanyMetrics;
   answeredScenarios: string[];
+  skippedScenarios: string[];
 }
 
 export type GameScreen =

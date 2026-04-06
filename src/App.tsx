@@ -24,6 +24,7 @@ function App() {
     submitAnswer,
     nextScenario,
     nextChapter,
+    skipScenario,
     skipChapter,
     restartGame,
     playMore,
@@ -59,6 +60,7 @@ function App() {
           showFeedback={showFeedback}
           onSubmit={submitAnswer}
           onNext={nextScenario}
+          onSkipScenario={skipScenario}
           onSkip={skipChapter}
           isLastChapter={progress.currentChapter === chapters.length - 1}
         />

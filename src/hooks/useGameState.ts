@@ -200,6 +200,29 @@ export function useGameState() {
     setSelectedScenarios([]);
   }, []);
 
+  const skipScenario = useCallback(() => {
+    if (!currentScenario || showFeedback) return;
+
+    const scenarioId = currentScenario.id;
+    setLastAnswerCorrect(null);
+    setSelectedAnswer(null);
+    setShowFeedback(false);
+
+    setProgress((prev) => ({
+      ...prev,
+      skippedScenarios: [...prev.skippedScenarios, scenarioId],
+    }));
+
+    if (progress.currentScenario + 1 < selectedScenarios.length) {
+      setProgress((prev) => ({
+        ...prev,
+        currentScenario: prev.currentScenario + 1,
+      }));
+    } else {
+      setScreen('chapter-summary');
+    }
+  }, [currentScenario, showFeedback, progress.currentScenario, selectedScenarios.length]);
+
   const skipChapter = useCallback(() => {
     setLastAnswerCorrect(null);
     setSelectedAnswer(null);
@@ -234,6 +257,7 @@ export function useGameState() {
     submitAnswer,
     nextScenario,
     nextChapter,
+    skipScenario,
     skipChapter,
     restartGame,
     playMore,
