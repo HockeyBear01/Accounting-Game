@@ -1600,6 +1600,176 @@ export const scenarios: Scenario[] = [
     },
   },
 
+  // CHAPTER 1 — DEBITS & CREDITS — Set 3 (dc3)
+
+  {
+    id: 'dc3-01',
+    reviewTip:
+      'Depreciation never credits the asset directly — it credits a contra-asset (Accumulated Depreciation) so the original cost stays visible on the balance sheet.',
+    chapterId: 'debits-credits',
+    title: 'Year-End Depreciation Entry',
+    description:
+      'At year-end, NorthStar Goods records $12,000 of depreciation on its delivery trucks, which were purchased for $60,000.',
+    question: 'What is the correct adjusting entry for depreciation?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: 'Debit Depreciation Expense $12,000; Credit Delivery Trucks $12,000' },
+      { id: 'b', label: 'Debit Depreciation Expense $12,000; Credit Accumulated Depreciation $12,000' },
+      { id: 'c', label: 'Debit Accumulated Depreciation $12,000; Credit Depreciation Expense $12,000' },
+      { id: 'd', label: 'Debit Delivery Trucks $12,000; Credit Depreciation Expense $12,000' },
+    ],
+    correctAnswer: 'b',
+    difficulty: 'easy',
+    feedback: {
+      correct:
+        'Correct. Depreciation Expense is debited (expense increases) and Accumulated Depreciation — a contra-asset — is credited (reducing the net book value of the trucks without removing the original cost).',
+      incorrect:
+        'Not quite. Depreciation Expense is the debit (it increases expenses on the income statement). The credit goes to Accumulated Depreciation, a contra-asset account — not to the asset (Delivery Trucks) itself. This preserves the original cost on the balance sheet.',
+      keyInsight:
+        'Accumulated Depreciation is a contra-asset: it carries a credit balance and is subtracted from the asset\'s cost to show net book value. The original cost remains intact for disclosure purposes.',
+      commonMistake:
+        'Crediting the asset account directly (Delivery Trucks) is wrong because it erases the original cost from the books. GAAP requires showing both the gross cost and total depreciation so users can assess the asset\'s age and remaining useful life.',
+      whyItMatters:
+        'Investors and analysts use gross cost vs. accumulated depreciation to estimate how old a company\'s assets are and when major capital expenditures will be needed — removing the original cost destroys that insight.',
+      explainMore:
+        'Entry: Debit Depreciation Expense $12,000 / Credit Accumulated Depreciation $12,000. After this entry the balance sheet shows: Delivery Trucks $60,000 less Accumulated Depreciation $12,000 = Net Book Value $48,000. Depreciation Expense appears on the income statement, reducing net income. Over the asset\'s useful life, Accumulated Depreciation grows until the asset is fully depreciated or disposed of.',
+    },
+    metricEffects: {
+      correct: { profit: 1500, reputation: 5 },
+      incorrect: { profit: -500, reputation: -3 },
+    },
+  },
+
+  {
+    id: 'dc3-02',
+    reviewTip:
+      'Paying loan principal reduces a liability (Notes Payable) and an asset (Cash) — do not confuse principal repayment with interest expense.',
+    chapterId: 'debits-credits',
+    title: 'Paying Off a Bank Loan',
+    description:
+      'NorthStar Goods makes a $25,000 payment to the bank to pay off the remaining principal on its short-term note payable. No interest is due with this payment.',
+    question: 'What is the correct journal entry?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: 'Debit Interest Expense $25,000; Credit Cash $25,000' },
+      { id: 'b', label: 'Debit Cash $25,000; Credit Notes Payable $25,000' },
+      { id: 'c', label: 'Debit Notes Payable $25,000; Credit Cash $25,000' },
+      { id: 'd', label: 'Debit Loan Expense $25,000; Credit Notes Payable $25,000' },
+    ],
+    correctAnswer: 'c',
+    difficulty: 'medium',
+    feedback: {
+      correct:
+        'Correct. Notes Payable (a liability) is debited to reduce the obligation, and Cash (an asset) is credited because money leaves the business.',
+      incorrect:
+        'Not quite. Repaying principal is not an expense — it reduces a liability. Debit Notes Payable $25,000 (liability decreases) and credit Cash $25,000 (asset decreases). Interest Expense would only appear if interest were being paid.',
+      keyInsight:
+        'Repaying the principal of a loan is a balance-sheet-only transaction: a liability decreases and an asset decreases. It does not hit the income statement — only the interest portion of a loan payment is an expense.',
+      commonMistake:
+        'Debiting Interest Expense for the full payment is the most common error. Principal repayment and interest are separate: principal reduces the liability, while interest is the cost of borrowing and is expensed separately.',
+      whyItMatters:
+        'Confusing principal with interest distorts both the balance sheet (liabilities stay overstated) and the income statement (expenses are overstated), misleading lenders and investors about the company\'s financial health.',
+      explainMore:
+        'Entry: Debit Notes Payable $25,000 / Credit Cash $25,000. If there were also $1,500 of accrued interest, the combined entry would be: Debit Notes Payable $25,000 + Debit Interest Expense $1,500 / Credit Cash $26,500. On the cash flow statement, principal repayment appears under Financing Activities, while interest paid appears under Operating Activities (under U.S. GAAP).',
+    },
+    metricEffects: {
+      correct: { cash: -2000, reputation: 5 },
+      incorrect: { profit: -500, reputation: -3 },
+    },
+  },
+
+  {
+    id: 'dc3-03',
+    reviewTip:
+      'Declaring a dividend creates a liability (Dividends Payable) immediately — Cash is not credited until the actual payment date.',
+    chapterId: 'debits-credits',
+    title: 'Declaring a Cash Dividend',
+    description:
+      'On December 15, NorthStar Goods\' board of directors declares a $20,000 cash dividend to be paid on January 15 to shareholders of record on December 31.',
+    question: 'What journal entry is recorded on the declaration date (December 15)?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: 'Debit Dividends Payable $20,000; Credit Cash $20,000' },
+      { id: 'b', label: 'Debit Retained Earnings $20,000; Credit Cash $20,000' },
+      { id: 'c', label: 'Debit Retained Earnings $20,000; Credit Dividends Payable $20,000' },
+      { id: 'd', label: 'Debit Dividends Expense $20,000; Credit Dividends Payable $20,000' },
+    ],
+    correctAnswer: 'c',
+    difficulty: 'medium',
+    feedback: {
+      correct:
+        'Correct. On the declaration date, Retained Earnings is debited (equity decreases) and Dividends Payable is credited (a current liability is created). Cash does not move until the payment date.',
+      incorrect:
+        'Not quite. At declaration, no cash has been paid yet — the company is only recognizing its obligation. Debit Retained Earnings $20,000 (equity down) and credit Dividends Payable $20,000 (liability up). The cash payment entry occurs later on January 15.',
+      keyInsight:
+        'Dividend accounting has two key dates with journal entries: the declaration date (creates a liability) and the payment date (settles the liability with cash). The record date determines who receives the dividend but has no journal entry.',
+      commonMistake:
+        'Crediting Cash on the declaration date is wrong — the dividend has been declared but not yet paid. Cash leaves the business only on the payment date. Also, dividends are not expenses — they bypass the income statement entirely.',
+      whyItMatters:
+        'Properly recording declared but unpaid dividends as a current liability ensures the balance sheet accurately reflects all obligations, which is critical for short-term liquidity analysis and working capital management.',
+      explainMore:
+        'Two-entry lifecycle: Declaration (Dec 15): Debit Retained Earnings $20,000 / Credit Dividends Payable $20,000. Payment (Jan 15): Debit Dividends Payable $20,000 / Credit Cash $20,000. Some companies use a temporary Dividends Declared account instead of debiting Retained Earnings directly — it is closed to Retained Earnings at year-end with the same net effect.',
+    },
+    metricEffects: {
+      correct: { profit: 1500, reputation: 5 },
+      incorrect: { profit: -500, reputation: -3 },
+    },
+  },
+
+  {
+    id: 'dc3-04',
+    reviewTip:
+      'In a compound entry, total debits must still equal total credits — multiple credits (or debits) are common when a transaction involves more than two accounts.',
+    chapterId: 'debits-credits',
+    title: 'Compound Entry — Equipment Purchase',
+    description:
+      'NorthStar Goods purchases equipment worth $15,000. The company pays $9,000 in cash and signs a $6,000 note payable for the balance.',
+    question: 'What is the correct journal entry?',
+    type: 'multiple-choice',
+    options: [
+      {
+        id: 'a',
+        label:
+          'Debit Equipment $15,000; Credit Cash $9,000; Credit Notes Payable $6,000',
+      },
+      {
+        id: 'b',
+        label:
+          'Debit Equipment $9,000; Debit Notes Payable $6,000; Credit Cash $15,000',
+      },
+      {
+        id: 'c',
+        label:
+          'Debit Equipment $15,000; Credit Cash $15,000',
+      },
+      {
+        id: 'd',
+        label:
+          'Debit Equipment $9,000; Credit Cash $9,000; Debit Equipment $6,000; Credit Notes Payable $6,000',
+      },
+    ],
+    correctAnswer: 'a',
+    difficulty: 'hard',
+    feedback: {
+      correct:
+        'Correct. Equipment (an asset) is debited for the full $15,000 cost. The two sources of financing are credited: Cash $9,000 (asset down) and Notes Payable $6,000 (liability up). Debits ($15,000) = Credits ($9,000 + $6,000).',
+      incorrect:
+        'Not quite. The equipment costs $15,000, so debit Equipment for the full amount. The payment is split: $9,000 cash and a $6,000 note. Credit Cash $9,000 and Credit Notes Payable $6,000. Total debits ($15,000) = Total credits ($9,000 + $6,000 = $15,000).',
+      keyInsight:
+        'A compound journal entry has more than two accounts but the fundamental rule never changes: total debits must equal total credits. The asset is recorded at its full cost regardless of how it is financed.',
+      commonMistake:
+        'Recording only the cash portion ($9,000) as the equipment cost understates the asset and ignores the note payable. The equipment must be recorded at its full $15,000 cost — the financing method does not change the asset\'s value.',
+      whyItMatters:
+        'Compound entries are the norm in real-world accounting — acquisitions, loan-financed purchases, and payroll entries routinely involve three or more accounts. Mastering them is essential for accurately recording business transactions.',
+      explainMore:
+        'Entry: Debit Equipment $15,000 / Credit Cash $9,000 / Credit Notes Payable $6,000. Verification: Debits = $15,000; Credits = $9,000 + $6,000 = $15,000 ✓. This transaction increases total assets by $6,000 net (Equipment +$15,000, Cash −$9,000) and increases liabilities by $6,000 (Notes Payable). The accounting equation stays in balance: Assets (+$6,000) = Liabilities (+$6,000) + Equity (no change).',
+    },
+    metricEffects: {
+      correct: { profit: 2500, reputation: 8 },
+      incorrect: { profit: -1000, reputation: -5 },
+    },
+  },
+
   // CHAPTER 2 — FIFO / LIFO (5 new)
 
   {
