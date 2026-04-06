@@ -288,7 +288,7 @@ export const scenarios: Scenario[] = [
       { id: 'd', label: 'Debit Cash $25,000; Credit Notes Payable $25,000' },
     ],
     correctAnswer: 'b',
-    difficulty: 'medium',
+    difficulty: 'easy',
     feedback: {
       correct:
         'Correct. Cash (asset) increases with a debit, and Owner\'s Capital (equity) increases with a credit. Owner investments build equity, not revenue.',
@@ -393,7 +393,7 @@ export const scenarios: Scenario[] = [
       { id: 'd', label: 'Debit Accrued Liabilities $1,800; Credit Utilities Expense $1,800' },
     ],
     correctAnswer: 'c',
-    difficulty: 'hard',
+    difficulty: 'medium',
     feedback: {
       correct:
         'Correct. Under accrual accounting, expenses are recorded when incurred — not when paid. Utilities Expense is debited and Accrued Liabilities is credited to show we owe the amount.',
@@ -1224,7 +1224,7 @@ export const scenarios: Scenario[] = [
       { id: 'd', label: 'Debit Wages Expense $3,200; Credit Cash $3,200' },
     ],
     correctAnswer: 'b',
-    difficulty: 'easy',
+    difficulty: 'medium',
     feedback: {
       correct:
         'Correct. The expense is incurred this period (debit Wages Expense) and the unpaid obligation is recorded as a liability (credit Wages Payable).',
