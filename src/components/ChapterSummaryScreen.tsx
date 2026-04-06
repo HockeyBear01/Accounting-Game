@@ -1,10 +1,11 @@
-import type { ChapterConfig, PlayerProgress, ChapterId } from '../types/game';
+import type { ChapterConfig, PlayerProgress, ChapterId, Scenario } from '../types/game';
 import { getChapterGrade, getChapterSummary } from '../utils/gameLogic';
 
 interface ChapterSummaryScreenProps {
   chapter: ChapterConfig;
   chapterIndex: number;
   progress: PlayerProgress;
+  selectedScenarios: Scenario[];
   isLastChapter: boolean;
   canPlayMore: boolean;
   onNext: () => void;
@@ -15,6 +16,7 @@ export function ChapterSummaryScreen({
   chapter,
   chapterIndex,
   progress,
+  selectedScenarios,
   isLastChapter,
   canPlayMore,
   onNext,
@@ -24,6 +26,16 @@ export function ChapterSummaryScreen({
   const grade = getChapterGrade(chapterScore.correct, chapterScore.total);
   const summary = getChapterSummary(chapter.id as ChapterId, chapterScore.correct, chapterScore.total);
   const pct = chapterScore.total > 0 ? Math.round((chapterScore.correct / chapterScore.total) * 100) : 0;
+
+  // Scenarios from this round that were missed (wrong answer) or skipped
+  const roundTotal = selectedScenarios.length;
+  const roundCorrect = selectedScenarios.filter(
+    (s) => progress.answeredScenarios.includes(s.id) && !progress.incorrectScenarios.includes(s.id)
+  ).length;
+
+  const needsReview = selectedScenarios.filter(
+    (s) => progress.incorrectScenarios.includes(s.id) || progress.skippedScenarios.includes(s.id)
+  );
 
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
@@ -45,7 +57,7 @@ export function ChapterSummaryScreen({
               </div>
               <div className="w-px h-10 bg-white/20" />
               <div className="text-center">
-                <div className="text-3xl font-bold text-white">{chapterScore.correct}/{chapterScore.total}</div>
+                <div className="text-3xl font-bold text-white">{roundCorrect}/{roundTotal}</div>
                 <div className="text-xs text-white/70">Correct</div>
               </div>
             </div>
@@ -53,6 +65,36 @@ export function ChapterSummaryScreen({
 
           {/* Summary */}
           <div className="px-6 py-6 space-y-4">
+            {/* Missed / Skipped Scenarios */}
+            {needsReview.length > 0 && (
+              <div className="bg-amber-50 rounded-xl p-4 border border-amber-200">
+                <h3 className="text-xs font-bold text-amber-700 uppercase tracking-wider mb-3">
+                  {needsReview.length === 1 ? '1 Scenario to Review' : `${needsReview.length} Scenarios to Review`}
+                </h3>
+                <ul className="space-y-3">
+                  {needsReview.map((s) => {
+                    const wasSkipped = progress.skippedScenarios.includes(s.id);
+                    return (
+                      <li key={s.id} className="flex items-start gap-2.5">
+                        <span className={`mt-0.5 shrink-0 text-sm ${wasSkipped ? 'text-slate-400' : 'text-amber-500'}`}>
+                          {wasSkipped ? '○' : '✗'}
+                        </span>
+                        <div>
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <span className="text-sm font-semibold text-slate-700">{s.title}</span>
+                            <span className={`text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded ${wasSkipped ? 'bg-slate-100 text-slate-500' : 'bg-amber-100 text-amber-700'}`}>
+                              {wasSkipped ? 'Skipped' : 'Missed'}
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-500 leading-relaxed">{s.reviewTip}</p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+
             {/* Strengths */}
             <div className="bg-success-50 rounded-xl p-4 border border-success-100">
               <h3 className="text-xs font-bold text-success-700 uppercase tracking-wider mb-2">Strengths</h3>
@@ -88,13 +130,13 @@ export function ChapterSummaryScreen({
               <p className="text-sm text-slate-600 leading-relaxed italic">"{summary.advice}"</p>
             </div>
 
-            {/* Play More – available while unseen scenarios remain in this chapter */}
+            {/* Practice More – re-draws 5 new scenarios from this chapter */}
             {canPlayMore && (
               <button
                 onClick={onPlayMore}
                 className="w-full py-3.5 bg-white text-primary-600 rounded-xl font-semibold text-sm border-2 border-primary-300 hover:bg-primary-50 transition-colors"
               >
-                Play More — Keep Practicing This Topic
+                Practice More — Keep Practicing This Topic
               </button>
             )}
 
@@ -102,7 +144,7 @@ export function ChapterSummaryScreen({
               onClick={onNext}
               className="w-full py-3.5 bg-primary-600 text-white rounded-xl font-semibold text-sm hover:bg-primary-700 transition-colors shadow-sm"
             >
-              {isLastChapter ? 'View Final Results' : 'Next Chapter →'}
+              {isLastChapter ? 'View Final Results' : 'Continue to Next Chapter →'}
             </button>
           </div>
         </div>

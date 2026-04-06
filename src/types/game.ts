@@ -43,6 +43,7 @@ export interface Scenario {
   };
   difficulty: 'easy' | 'medium' | 'hard';
   visualData?: InventoryVisualData | BreakEvenVisualData;
+  reviewTip: string;
 }
 
 export interface InventoryLayer {
@@ -115,6 +116,7 @@ export interface PlayerProgress {
   metrics: CompanyMetrics;
   answeredScenarios: string[];
   skippedScenarios: string[];
+  incorrectScenarios: string[];
 }
 
 export type GameScreen =

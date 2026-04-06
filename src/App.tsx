@@ -72,6 +72,7 @@ function App() {
           chapter={currentChapter}
           chapterIndex={progress.currentChapter}
           progress={progress}
+          selectedScenarios={selectedScenarios}
           isLastChapter={progress.currentChapter === chapters.length - 1}
           canPlayMore={canPlayMore}
           onNext={nextChapter}
