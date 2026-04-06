@@ -167,6 +167,7 @@ export const scenarios: Scenario[] = [
   // ─────────────────────────────────────────────
   {
     id: 'dc-01',
+    reviewTip: 'When buying inventory on credit, debit Inventory (asset increases) and credit Accounts Payable (liability increases) — no cash involved yet.',
     chapterId: 'debits-credits',
     title: 'Purchasing Inventory on Credit',
     description:
@@ -202,6 +203,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'dc-02',
+    reviewTip: 'Collecting a receivable converts one asset to another — debit Cash, credit Accounts Receivable — with no new revenue recognized.',
     chapterId: 'debits-credits',
     title: 'Receiving Customer Payment',
     description:
@@ -237,6 +239,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'dc-03',
+    reviewTip: 'A cash sale records revenue at selling price (debit Cash, credit Revenue), separate from the COGS entry (debit COGS, credit Inventory).',
     chapterId: 'debits-credits',
     title: 'Recording a Cash Sale',
     description:
@@ -272,6 +275,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'dc-04',
+    reviewTip: 'Expenses always increase with a debit; when paid immediately in cash, the entry is Debit Salaries Expense, Credit Cash.',
     chapterId: 'debits-credits',
     title: 'Paying Employee Salaries',
     description:
@@ -307,6 +311,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'dc-05',
+    reviewTip: 'Taking out a loan increases both Cash (debit) and Notes Payable (credit) — borrowed money is a liability, never revenue.',
     chapterId: 'debits-credits',
     title: 'Taking Out a Bank Loan',
     description:
@@ -342,6 +347,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'dc-06',
+    reviewTip: 'Prepaid rent is an asset at payment — debit Prepaid Rent, credit Cash — then expense it monthly as the period is consumed.',
     chapterId: 'debits-credits',
     title: 'Prepaying Rent',
     description:
@@ -377,6 +383,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'dc-07',
+    reviewTip: 'Owner investments increase Cash (debit) and Owner\'s Capital (credit) — they are equity contributions, not operating revenue.',
     chapterId: 'debits-credits',
     title: 'Owner Investment in the Business',
     description:
@@ -412,6 +419,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'dc-08',
+    reviewTip: 'Paying a supplier eliminates the liability: debit Accounts Payable (liability decreases) and credit Cash (asset decreases).',
     chapterId: 'debits-credits',
     title: 'Paying Off Accounts Payable',
     description:
@@ -447,6 +455,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'dc-09',
+    reviewTip: 'Depreciation is a non-cash expense: debit Depreciation Expense and credit Accumulated Depreciation, a contra-asset that reduces the asset\'s book value.',
     chapterId: 'debits-credits',
     title: 'Depreciation on Equipment',
     description:
@@ -482,6 +491,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'dc-10',
+    reviewTip: 'Accrued expenses are recognized before cash is paid — debit the expense, credit a liability — to match costs with the period they belong to.',
     chapterId: 'debits-credits',
     title: 'Accruing Unpaid Utilities',
     description:
@@ -521,6 +531,7 @@ export const scenarios: Scenario[] = [
   // ─────────────────────────────────────────────
   {
     id: 'fl-01',
+    reviewTip: 'Under FIFO, COGS uses the oldest cost layers first — work through each batch sequentially until you\'ve covered all units sold.',
     chapterId: 'fifo-lifo',
     title: 'Basic FIFO Calculation',
     description:
@@ -564,6 +575,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'fl-02',
+    reviewTip: 'Under LIFO, COGS uses the most recent cost layers first — start from the newest purchase and work backward until units sold are covered.',
     chapterId: 'fifo-lifo',
     title: 'Basic LIFO Calculation',
     description:
@@ -607,6 +619,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'fl-03',
+    reviewTip: 'Under FIFO, ending inventory always reflects the most recently purchased units, since older units are sold first.',
     chapterId: 'fifo-lifo',
     title: 'FIFO Ending Inventory',
     description:
@@ -651,6 +664,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'fl-04',
+    reviewTip: 'In rising-price environments, LIFO produces higher COGS and lower taxable income, while FIFO produces lower COGS and higher reported profit.',
     chapterId: 'fifo-lifo',
     title: 'FIFO vs LIFO: Tax Impact',
     description:
@@ -686,6 +700,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'fl-05',
+    reviewTip: 'The LIFO reserve is the gap between FIFO and LIFO inventory values, used to convert LIFO statements to a FIFO-equivalent basis for comparison.',
     chapterId: 'fifo-lifo',
     title: 'LIFO Reserve Concept',
     description:
@@ -721,6 +736,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'fl-06',
+    reviewTip: 'Inventory method choice affects taxes, reported profit, and balance sheet values — FIFO reflects current costs in inventory, LIFO can reduce taxes in inflationary periods.',
     chapterId: 'fifo-lifo',
     title: 'Choosing an Inventory Method',
     description:
@@ -760,6 +776,7 @@ export const scenarios: Scenario[] = [
   // ─────────────────────────────────────────────
   {
     id: 'be-01',
+    reviewTip: 'Break-even units = Fixed Costs ÷ Contribution Margin per Unit; this is the minimum volume needed before any profit is earned.',
     chapterId: 'break-even',
     title: 'Basic Break-Even Calculation',
     description:
@@ -801,6 +818,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'be-02',
+    reviewTip: 'Break-even in sales dollars = Fixed Costs ÷ CM Ratio, where CM Ratio = (Price − Variable Cost per Unit) ÷ Price.',
     chapterId: 'break-even',
     title: 'Break-Even in Sales Dollars',
     description:
@@ -842,6 +860,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'be-03',
+    reviewTip: 'Target profit volume = (Fixed Costs + Target Profit) ÷ Contribution Margin per Unit — treat the target profit as an additional fixed cost to cover.',
     chapterId: 'break-even',
     title: 'Target Profit Analysis',
     description:
@@ -883,6 +902,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'be-04',
+    reviewTip: 'Margin of safety = Actual Sales − Break-Even Sales, showing how much sales can drop before the business starts losing money.',
     chapterId: 'break-even',
     title: 'Margin of Safety',
     description:
@@ -924,6 +944,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'be-05',
+    reviewTip: 'When fixed costs rise, the break-even point rises proportionally — more units must be sold to cover the higher cost base before profit begins.',
     chapterId: 'break-even',
     title: 'Fixed Cost Increase Decision',
     description:
@@ -965,6 +986,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'be-06',
+    reviewTip: 'A price cut reduces contribution margin per unit, raising the break-even point — you need higher volume to cover the same fixed costs.',
     chapterId: 'break-even',
     title: 'Price Cut Analysis',
     description:
@@ -1010,6 +1032,7 @@ export const scenarios: Scenario[] = [
   // ─────────────────────────────────────────────
   {
     id: 'fr-01',
+    reviewTip: 'A product sale requires two entries: revenue (debit Cash/AR, credit Sales Revenue) and cost recognition (debit COGS, credit Inventory).',
     chapterId: 'final-round',
     title: 'Recording a Product Sale (Integrated)',
     description:
@@ -1053,6 +1076,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'fr-02',
+    reviewTip: 'Evaluate a new product line by computing its own break-even point using its contribution margin and allocated fixed costs before committing resources.',
     chapterId: 'final-round',
     title: 'Break-Even with New Product Line',
     description:
@@ -1094,6 +1118,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'fr-03',
+    reviewTip: 'Inventory must be written down when its net realizable value falls below cost — debit a loss or COGS account and credit Inventory.',
     chapterId: 'final-round',
     title: 'Inventory Write-Down',
     description:
@@ -1129,6 +1154,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'fr-04',
+    reviewTip: 'Contribution margin analysis (Revenue − Variable Costs) identifies which products or decisions best cover fixed costs and generate profit.',
     chapterId: 'final-round',
     title: 'Contribution Margin Decision',
     description:
@@ -1164,6 +1190,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'fr-05',
+    reviewTip: 'Revenue is recognized when the performance obligation is satisfied (goods or services delivered), not necessarily when cash is received.',
     chapterId: 'final-round',
     title: 'Revenue Recognition Timing',
     description:
@@ -1199,6 +1226,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'fr-06',
+    reviewTip: 'Operating leverage measures how profit responds to sales changes — high fixed costs amplify both gains and losses relative to revenue shifts.',
     chapterId: 'final-round',
     title: 'Operating Leverage',
     description:
@@ -1234,6 +1262,7 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'fr-07',
+    reviewTip: 'Integrated decisions require combining journal entry logic, inventory costing methods, CVP analysis, and revenue recognition principles simultaneously.',
     chapterId: 'final-round',
     title: 'Final Integrated Decision',
     description:
@@ -1277,6 +1306,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'dc2-01',
+    reviewTip: 'When wages are paid immediately in cash, debit Wages Expense (cost incurred) and credit Cash — no liability is created when payment is immediate.',
     chapterId: 'debits-credits',
     title: 'Paying Employee Wages',
     description:
@@ -1313,6 +1343,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'dc2-02',
+    reviewTip: 'Accrued wages at period-end are recorded as Debit Wages Expense, Credit Wages Payable, matching the cost to the period the work was performed.',
     chapterId: 'debits-credits',
     title: 'Accruing Wages at Period-End',
     description:
@@ -1349,6 +1380,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'dc2-03',
+    reviewTip: 'Purchasing equipment for cash is an asset swap: debit Equipment (long-term asset increases) and credit Cash (current asset decreases).',
     chapterId: 'debits-credits',
     title: 'Purchasing Equipment for Cash',
     description:
@@ -1385,6 +1417,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'dc2-04',
+    reviewTip: 'Depreciation spreads an asset\'s cost over its useful life: debit Depreciation Expense and credit Accumulated Depreciation each period.',
     chapterId: 'debits-credits',
     title: 'Recording Depreciation Expense',
     description:
@@ -1421,6 +1454,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'dc2-05',
+    reviewTip: 'As prepaid insurance is consumed, the asset becomes an expense — debit Insurance Expense and credit Prepaid Insurance for the portion used each period.',
     chapterId: 'debits-credits',
     title: 'Prepaid Insurance — Using It Up',
     description:
@@ -1457,6 +1491,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'dc2-06',
+    reviewTip: 'Borrowing from the bank increases Cash (debit) and creates a Notes Payable liability (credit) — the full amount must eventually be repaid.',
     chapterId: 'debits-credits',
     title: 'Borrowing from the Bank',
     description:
@@ -1493,6 +1528,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'dc2-07',
+    reviewTip: 'Delivering goods on a prepaid contract converts a liability to revenue — debit Unearned Revenue (liability decreases) and credit Revenue (earned).',
     chapterId: 'debits-credits',
     title: 'Unearned Revenue — Delivering the Goods',
     description:
@@ -1529,6 +1565,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'dc2-08',
+    reviewTip: 'Owner withdrawals or dividends reduce equity — debit Dividends/Drawings and credit Cash, reducing the owner\'s stake in the business.',
     chapterId: 'debits-credits',
     title: 'Owner Withdraws Dividends',
     description:
@@ -1567,6 +1604,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'fl2-01',
+    reviewTip: 'With multiple LIFO layers, work backward from the newest layer and exhaust each one before moving to older layers until units sold are fully covered.',
     chapterId: 'fifo-lifo',
     title: 'Three-Layer LIFO Calculation',
     description:
@@ -1612,6 +1650,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'fl2-02',
+    reviewTip: 'Weighted average cost = Total Cost Available ÷ Total Units Available; this single rate is applied equally to both units sold and units remaining.',
     chapterId: 'fifo-lifo',
     title: 'Weighted Average Cost',
     description:
@@ -1648,6 +1687,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'fl2-03',
+    reviewTip: 'Compare FIFO vs. LIFO tax impact by computing each method\'s COGS separately — LIFO yields higher COGS in rising markets, reducing taxable income.',
     chapterId: 'fifo-lifo',
     title: 'FIFO vs. LIFO: Tax Impact Decision',
     description:
@@ -1684,6 +1724,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'fl2-04',
+    reviewTip: 'Under FIFO, ending inventory is valued at the most recent purchase prices, so rising prices produce a higher balance sheet inventory value.',
     chapterId: 'fifo-lifo',
     title: 'Ending Inventory Under FIFO',
     description:
@@ -1720,6 +1761,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'fl2-05',
+    reviewTip: 'LIFO leaves older, lower-cost layers in ending inventory, which understates inventory on the balance sheet relative to current replacement prices.',
     chapterId: 'fifo-lifo',
     title: 'LIFO Balance Sheet Effect',
     description:
@@ -1758,6 +1800,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'be2-01',
+    reviewTip: 'A contribution margin income statement separates variable from fixed costs to show how each unit sold contributes to covering fixed costs and generating profit.',
     chapterId: 'break-even',
     title: 'Contribution Margin Format Income Statement',
     description:
@@ -1800,6 +1843,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'be2-02',
+    reviewTip: 'Target profit volume = (Fixed Costs + Target Profit) ÷ Contribution Margin per Unit — treat the desired profit as an additional fixed cost to recover.',
     chapterId: 'break-even',
     title: 'Target Profit Volume',
     description:
@@ -1842,6 +1886,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'be2-03',
+    reviewTip: 'Fixed costs stay constant regardless of volume (e.g., rent, salaries), while variable costs change in direct proportion to units produced or sold.',
     chapterId: 'break-even',
     title: 'Identifying Fixed vs. Variable Costs',
     description:
@@ -1878,6 +1923,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'be2-04',
+    reviewTip: 'Break-even in sales dollars = Fixed Costs ÷ CM Ratio, where CM Ratio = Contribution Margin per Unit ÷ Selling Price per Unit.',
     chapterId: 'break-even',
     title: 'Break-Even in Sales Dollars',
     description:
@@ -1920,6 +1966,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'be2-05',
+    reviewTip: 'CVP analysis assumes linear cost and revenue relationships, a constant product mix, and stable prices — verify these assumptions before applying results.',
     chapterId: 'break-even',
     title: 'CVP Assumption Check',
     description:
@@ -1958,6 +2005,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'fr2-01',
+    reviewTip: 'A CVP income statement shows Sales − Variable Costs = Contribution Margin − Fixed Costs = Operating Income, all tied back to the break-even formula.',
     chapterId: 'final-round',
     title: 'Full CVP Income Statement + Break-Even',
     description:
@@ -2000,6 +2048,7 @@ export const scenarios: Scenario[] = [
 
   {
     id: 'fr2-02',
+    reviewTip: 'LIFO reduces taxable income in inflationary periods via higher COGS, but also lowers reported profit and balance sheet inventory — a deliberate tax vs. optics trade-off.',
     chapterId: 'final-round',
     title: 'LIFO Tax Savings vs. Reported Profit Trade-off',
     description:

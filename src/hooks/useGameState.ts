@@ -154,6 +154,9 @@ export function useGameState() {
           },
           metrics: applyMetricDelta(prev.metrics, delta),
           answeredScenarios: [...prev.answeredScenarios, currentScenario.id],
+          incorrectScenarios: isCorrect
+            ? prev.incorrectScenarios
+            : [...prev.incorrectScenarios, currentScenario.id],
         };
       });
     },
