@@ -1966,6 +1966,142 @@ export const scenarios: Scenario[] = [
     },
   },
 
+  {
+    id: 'fl3-01',
+    reviewTip: 'Weighted average cost = Total Cost of All Units Available ÷ Total Units Available. Apply that single rate to units sold for COGS.',
+    chapterId: 'fifo-lifo',
+    title: 'Weighted Average Cost Contrast',
+    description:
+      'NorthStar Goods has the following inventory:\n• 100 units @ $10 each\n• 150 units @ $12 each\n\nThe company sells 120 units.',
+    question: 'Using the weighted-average cost method, what is COGS for the 120 units sold?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: '$1,200' },
+      { id: 'b', label: '$1,344' },
+      { id: 'c', label: '$1,440' },
+      { id: 'd', label: '$1,320' },
+    ],
+    correctAnswer: 'b',
+    difficulty: 'easy',
+    visualData: {
+      type: 'inventory',
+      layers: [
+        { units: 100, costPerUnit: 10, label: 'Batch 1' },
+        { units: 150, costPerUnit: 12, label: 'Batch 2' },
+      ],
+      unitsSold: 120,
+    },
+    feedback: {
+      correct:
+        'Correct. Total cost = (100 × $10) + (150 × $12) = $1,000 + $1,800 = $2,800. Total units = 250. Weighted avg cost = $2,800 ÷ 250 = $11.20. COGS = 120 × $11.20 = $1,344.',
+      incorrect:
+        'Not quite. Weighted average blends all costs: Total cost = (100 × $10) + (150 × $12) = $2,800. Total units = 250. Average cost per unit = $2,800 ÷ 250 = $11.20. COGS = 120 × $11.20 = $1,344.',
+      keyInsight:
+        'Weighted average smooths cost fluctuations by spreading the total cost evenly across all available units. It is simpler to apply than FIFO or LIFO but less commonly used in practice.',
+      commonMistake:
+        'Using a simple average of $10 and $12 = $11 per unit ignores the different quantities at each price. The weighted average must account for the number of units at each cost level.',
+      whyItMatters:
+        'COGS under weighted average always falls between FIFO and LIFO when prices are rising, producing moderate gross profit figures that smooth earnings volatility.',
+      explainMore:
+        'Step 1: Total cost available = (100 × $10) + (150 × $12) = $1,000 + $1,800 = $2,800. Step 2: Total units = 100 + 150 = 250. Step 3: Weighted avg cost = $2,800 ÷ 250 = $11.20. Step 4: COGS = 120 × $11.20 = $1,344. Ending inventory = 130 × $11.20 = $1,456. Check: $1,344 + $1,456 = $2,800 ✓',
+    },
+    metricEffects: {
+      correct: { inventory: 1000, reputation: 5 },
+      incorrect: { reputation: -3 },
+    },
+  },
+
+  {
+    id: 'fl3-02',
+    reviewTip: 'Under LCNRV, inventory is reported at the lower of its original cost or net realizable value. If market value drops below cost, write inventory down immediately.',
+    chapterId: 'fifo-lifo',
+    title: 'Inventory Write-Down (LCNRV)',
+    description:
+      'NorthStar Goods holds 200 units of a product that originally cost $15 each (total cost: $3,000). Due to a market downturn, the net realizable value has dropped to $11 per unit.',
+    question: 'Under the Lower of Cost or Net Realizable Value (LCNRV) rule, what journal entry should NorthStar record?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: 'No entry needed — keep inventory at $3,000 cost' },
+      { id: 'b', label: 'Debit Loss on Inventory Write-Down $800 / Credit Inventory $800' },
+      { id: 'c', label: 'Debit Inventory $800 / Credit Gain on Revaluation $800' },
+      { id: 'd', label: 'Debit Cost of Goods Sold $3,000 / Credit Inventory $3,000' },
+    ],
+    correctAnswer: 'b',
+    difficulty: 'medium',
+    visualData: {
+      type: 'inventory',
+      layers: [
+        { units: 200, costPerUnit: 15, label: 'Original Cost' },
+        { units: 200, costPerUnit: 11, label: 'Net Realizable Value' },
+      ],
+      unitsSold: 0,
+    },
+    feedback: {
+      correct:
+        'Correct. Cost = 200 × $15 = $3,000. NRV = 200 × $11 = $2,200. Write-down = $3,000 − $2,200 = $800. Debit Loss on Inventory Write-Down $800 / Credit Inventory $800.',
+      incorrect:
+        'Not quite. Under LCNRV, inventory must be reported at the lower of cost ($15) or NRV ($11). Since NRV < cost, write inventory down: $3,000 − $2,200 = $800. The entry is Debit Loss on Inventory Write-Down $800 / Credit Inventory $800.',
+      keyInsight:
+        'LCNRV is an application of conservatism: losses are recognized immediately when market value drops below cost, but gains are not recognized until the inventory is actually sold.',
+      commonMistake:
+        'Keeping inventory at its original cost when market value has dropped violates the LCNRV rule. Conservatism requires immediate recognition of impairment losses.',
+      whyItMatters:
+        'Failing to write down inventory overstates assets on the balance sheet and delays loss recognition, misleading investors about the company\'s true financial position.',
+      explainMore:
+        'LCNRV comparison: Cost per unit = $15, NRV per unit = $11. Lower value = $11. Correct inventory value = 200 × $11 = $2,200. Write-down amount = $3,000 − $2,200 = $800. Journal entry: Debit Loss on Inventory Write-Down $800 (income statement — reduces profit). Credit Inventory $800 (balance sheet — reduces asset). After posting, inventory is carried at $2,200 on the balance sheet.',
+    },
+    metricEffects: {
+      correct: { inventory: 1500, reputation: 5 },
+      incorrect: { reputation: -3 },
+    },
+  },
+
+  {
+    id: 'fl3-03',
+    reviewTip: 'Under LIFO, work backward from the newest batch. Exhaust each layer completely before moving to the next older layer until all sold units are accounted for.',
+    chapterId: 'fifo-lifo',
+    title: 'Three-Batch LIFO with Partial Layer',
+    description:
+      'NorthStar Goods has the following inventory:\n• Batch 1 (oldest): 50 units @ $20 each\n• Batch 2: 80 units @ $25 each\n• Batch 3 (newest): 60 units @ $30 each\n\nThe company sells 110 units under LIFO.',
+    question: 'What is the Cost of Goods Sold for these 110 units?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: '$2,800' },
+      { id: 'b', label: '$3,050' },
+      { id: 'c', label: '$2,750' },
+      { id: 'd', label: '$3,150' },
+    ],
+    correctAnswer: 'b',
+    difficulty: 'hard',
+    visualData: {
+      type: 'inventory',
+      layers: [
+        { units: 50, costPerUnit: 20, label: 'Batch 1 (Oldest)' },
+        { units: 80, costPerUnit: 25, label: 'Batch 2' },
+        { units: 60, costPerUnit: 30, label: 'Batch 3 (Newest)' },
+      ],
+      unitsSold: 110,
+    },
+    feedback: {
+      correct:
+        'Correct. Under LIFO, sell newest first: 60 units × $30 = $1,800 (Batch 3 exhausted). Still need 50 more units: 50 units × $25 = $1,250 (from Batch 2). Total COGS = $1,800 + $1,250 = $3,050.',
+      incorrect:
+        'Not quite. Under LIFO, start from the newest batch: Batch 3: all 60 units × $30 = $1,800. Still need 110 − 60 = 50 more units. Batch 2: 50 units × $25 = $1,250. Total COGS = $1,800 + $1,250 = $3,050.',
+      keyInsight:
+        'When a LIFO sale spans multiple layers, you must exhaust each layer completely before partially consuming the next older layer. Here, Batch 3 is fully consumed and Batch 2 is partially consumed.',
+      commonMistake:
+        'Starting from the oldest batch (Batch 1) instead of the newest is a FIFO approach, not LIFO. Also, some students forget to track how many units remain after exhausting a layer.',
+      whyItMatters:
+        'Multi-layer LIFO calculations are common in practice and on exams. Mastering the layer-by-layer approach ensures accurate COGS computation when sales span multiple purchase batches.',
+      explainMore:
+        'LIFO layer-by-layer: Step 1 — Sell all 60 units from Batch 3 (newest) at $30 = $1,800. Units remaining to sell: 110 − 60 = 50. Step 2 — Sell 50 units from Batch 2 at $25 = $1,250. Units remaining to sell: 50 − 50 = 0. Total COGS = $1,800 + $1,250 = $3,050. Ending inventory: 30 units from Batch 2 ($750) + 50 units from Batch 1 ($1,000) = $1,750. Check: COGS ($3,050) + Ending Inventory ($1,750) = $4,800 = Total cost available (50×$20 + 80×$25 + 60×$30) ✓',
+    },
+    metricEffects: {
+      correct: { inventory: 2000, reputation: 7 },
+      incorrect: { reputation: -3 },
+    },
+  },
+
   // CHAPTER 3 — BREAK-EVEN / CVP (5 new)
 
   {
