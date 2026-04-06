@@ -7,28 +7,95 @@ import {
   applyMetricDelta,
 } from '../utils/gameLogic';
 
+const SCENARIOS_PER_ROUND = 5;
+
+/**
+ * Select up to SCENARIOS_PER_ROUND scenarios from a chapter pool with weighted
+ * difficulty ordering:
+ *   slots 1-2 → prefer easy, fallback to medium then hard
+ *   slots 3-4 → prefer medium, fallback to easy then hard
+ *   slot  5   → prefer hard,  fallback to medium then easy
+ *
+ * Already-seen scenario IDs (seenIds) are excluded so "Play More" never
+ * repeats a question within the same session.
+ */
+function selectWeightedScenarios(
+  allChapterScenarios: Scenario[],
+  seenIds: string[],
+): Scenario[] {
+  const available = allChapterScenarios.filter((s) => !seenIds.includes(s.id));
+  if (available.length === 0) return [];
+
+  const used = new Set<string>();
+  const selected: Scenario[] = [];
+
+  function pickFrom(preferences: Array<'easy' | 'medium' | 'hard'>): Scenario | null {
+    for (const diff of preferences) {
+      const candidates = available.filter((s) => s.difficulty === diff && !used.has(s.id));
+      if (candidates.length > 0) {
+        const picked = candidates[Math.floor(Math.random() * candidates.length)];
+        used.add(picked.id);
+        return picked;
+      }
+    }
+    // Fallback: any remaining available scenario
+    const remaining = available.filter((s) => !used.has(s.id));
+    if (remaining.length === 0) return null;
+    const picked = remaining[Math.floor(Math.random() * remaining.length)];
+    used.add(picked.id);
+    return picked;
+  }
+
+  // Slots 1-2: bias toward easy
+  for (let i = 0; i < 2; i++) {
+    const s = pickFrom(['easy', 'medium', 'hard']);
+    if (s) selected.push(s);
+  }
+
+  // Slots 3-4: bias toward medium
+  for (let i = 0; i < 2; i++) {
+    const s = pickFrom(['medium', 'easy', 'hard']);
+    if (s) selected.push(s);
+  }
+
+  // Slot 5: bias toward hard
+  const s5 = pickFrom(['hard', 'medium', 'easy']);
+  if (s5) selected.push(s5);
+
+  return selected;
+}
+
 export function useGameState() {
   const [screen, setScreen] = useState<GameScreen>('start');
   const [progress, setProgress] = useState<PlayerProgress>(createInitialProgress());
   const [lastAnswerCorrect, setLastAnswerCorrect] = useState<boolean | null>(null);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
+  const [selectedScenarios, setSelectedScenarios] = useState<Scenario[]>([]);
 
   const currentChapter = useMemo(() => chapters[progress.currentChapter], [progress.currentChapter]);
 
+  // Full pool for the current chapter – used for canPlayMore check
   const chapterScenarios = useMemo(() => {
     if (!currentChapter) return [];
     return scenarios.filter((s) => s.chapterId === currentChapter.id);
   }, [currentChapter]);
 
   const currentScenario: Scenario | undefined = useMemo(
-    () => chapterScenarios[progress.currentScenario],
-    [chapterScenarios, progress.currentScenario]
+    () => selectedScenarios[progress.currentScenario],
+    [selectedScenarios, progress.currentScenario]
   );
 
-  const totalScenariosInGame = useMemo(() => scenarios.length, []);
+  // Total for the main game run (5 per chapter × 4 chapters = 20)
+  const totalScenariosInGame = useMemo(() => chapters.length * SCENARIOS_PER_ROUND, []);
 
   const completedScenarios = useMemo(() => progress.answeredScenarios.length, [progress.answeredScenarios]);
+
+  // "Play More" is available as long as there are unseen scenarios left in this chapter
+  const canPlayMore = useMemo(
+    () => chapterScenarios.filter((s) => !progress.answeredScenarios.includes(s.id)).length > 0,
+    [chapterScenarios, progress.answeredScenarios]
+  );
 
   const startGame = useCallback(() => {
     setProgress(createInitialProgress());
@@ -36,14 +103,23 @@ export function useGameState() {
     setLastAnswerCorrect(null);
     setSelectedAnswer(null);
     setShowFeedback(false);
+    setSelectedScenarios([]);
   }, []);
 
-  const startChapter = useCallback(() => {
+  // Shared logic for beginning a new 5-scenario round in the current chapter.
+  // Used by both startChapter (first time) and playMore (subsequent rounds).
+  const beginRound = useCallback(() => {
+    const newSelected = selectWeightedScenarios(chapterScenarios, progress.answeredScenarios);
+    setSelectedScenarios(newSelected);
+    setProgress((prev) => ({ ...prev, currentScenario: 0 }));
     setScreen('gameplay');
     setLastAnswerCorrect(null);
     setSelectedAnswer(null);
     setShowFeedback(false);
-  }, []);
+  }, [chapterScenarios, progress.answeredScenarios]);
+
+  const startChapter = beginRound;
+  const playMore = beginRound;
 
   const submitAnswer = useCallback(
     (answer: string) => {
@@ -89,7 +165,7 @@ export function useGameState() {
     setSelectedAnswer(null);
     setShowFeedback(false);
 
-    if (progress.currentScenario + 1 < chapterScenarios.length) {
+    if (progress.currentScenario + 1 < selectedScenarios.length) {
       setProgress((prev) => ({
         ...prev,
         currentScenario: prev.currentScenario + 1,
@@ -97,7 +173,7 @@ export function useGameState() {
     } else {
       setScreen('chapter-summary');
     }
-  }, [progress.currentScenario, chapterScenarios.length]);
+  }, [progress.currentScenario, selectedScenarios.length]);
 
   const nextChapter = useCallback(() => {
     if (progress.currentChapter + 1 < chapters.length) {
@@ -121,6 +197,7 @@ export function useGameState() {
     setLastAnswerCorrect(null);
     setSelectedAnswer(null);
     setShowFeedback(false);
+    setSelectedScenarios([]);
   }, []);
 
   const skipChapter = useCallback(() => {
@@ -145,6 +222,8 @@ export function useGameState() {
     currentChapter,
     currentScenario,
     chapterScenarios,
+    selectedScenarios,
+    canPlayMore,
     lastAnswerCorrect,
     selectedAnswer,
     showFeedback,
@@ -157,5 +236,6 @@ export function useGameState() {
     nextChapter,
     skipChapter,
     restartGame,
+    playMore,
   };
 }

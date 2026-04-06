@@ -6,7 +6,9 @@ interface ChapterSummaryScreenProps {
   chapterIndex: number;
   progress: PlayerProgress;
   isLastChapter: boolean;
+  canPlayMore: boolean;
   onNext: () => void;
+  onPlayMore: () => void;
 }
 
 export function ChapterSummaryScreen({
@@ -14,7 +16,9 @@ export function ChapterSummaryScreen({
   chapterIndex,
   progress,
   isLastChapter,
+  canPlayMore,
   onNext,
+  onPlayMore,
 }: ChapterSummaryScreenProps) {
   const chapterScore = progress.chapterScores[chapter.id as ChapterId];
   const grade = getChapterGrade(chapterScore.correct, chapterScore.total);
@@ -83,6 +87,16 @@ export function ChapterSummaryScreen({
               </div>
               <p className="text-sm text-slate-600 leading-relaxed italic">"{summary.advice}"</p>
             </div>
+
+            {/* Play More – available while unseen scenarios remain in this chapter */}
+            {canPlayMore && (
+              <button
+                onClick={onPlayMore}
+                className="w-full py-3.5 bg-white text-primary-600 rounded-xl font-semibold text-sm border-2 border-primary-300 hover:bg-primary-50 transition-colors"
+              >
+                Play More — Keep Practicing This Topic
+              </button>
+            )}
 
             <button
               onClick={onNext}

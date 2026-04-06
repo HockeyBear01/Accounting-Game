@@ -10,7 +10,8 @@ interface TopBarProps {
 }
 
 export function TopBar({ chapter, progress, totalScenarios, completedScenarios, showProgress = true }: TopBarProps) {
-  const progressPct = totalScenarios > 0 ? (completedScenarios / totalScenarios) * 100 : 0;
+  const displayCompleted = Math.min(completedScenarios, totalScenarios);
+  const progressPct = totalScenarios > 0 ? (displayCompleted / totalScenarios) * 100 : 0;
 
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-30">
@@ -36,7 +37,7 @@ export function TopBar({ chapter, progress, totalScenarios, completedScenarios, 
               />
             </div>
             <span className="text-xs text-slate-500 whitespace-nowrap">
-              {completedScenarios}/{totalScenarios}
+              {displayCompleted}/{totalScenarios}
             </span>
           </div>
         )}
