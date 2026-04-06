@@ -78,6 +78,21 @@ export interface CompanyMetrics {
   reputation: number;
 }
 
+export interface FormulaItem {
+  label: string;
+  expression: string;
+  note?: string;
+}
+
+export type FormulaSectionContent =
+  | { type: 'formulas'; items: FormulaItem[] }
+  | { type: 'table'; headers: string[]; rows: string[][] };
+
+export interface FormulaSection {
+  title: string;
+  content: FormulaSectionContent;
+}
+
 export interface ChapterConfig {
   id: ChapterId;
   title: string;
@@ -85,6 +100,7 @@ export interface ChapterConfig {
   description: string;
   objectives: string[];
   icon: string;
+  formulas: FormulaSection[];
 }
 
 export interface PlayerProgress {
