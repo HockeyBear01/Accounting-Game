@@ -2541,12 +2541,13 @@ export const scenarios: Scenario[] = [
     difficulty: 'hard',
     visualData: {
       type: 'inventory',
-      purchases: [
-        { date: 'Jan', units: 500, unitCost: 22 },
-        { date: 'Mar', units: 500, unitCost: 25 },
-        { date: 'Jun', units: 500, unitCost: 28 },
-        { date: 'Sep', units: 500, unitCost: 30 },
+      layers: [
+        { label: 'Jan', units: 500, costPerUnit: 22 },
+        { label: 'Mar', units: 500, costPerUnit: 25 },
+        { label: 'Jun', units: 500, costPerUnit: 28 },
+        { label: 'Sep', units: 500, costPerUnit: 30 },
       ],
+      unitsSold: 500,
     },
     feedback: {
       correct:
