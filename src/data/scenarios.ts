@@ -1,4 +1,102 @@
-import type { Scenario, ChapterConfig } from '../types/game';
+import type { Scenario, ChapterConfig, FormulaSection } from '../types/game';
+
+const ch1Formulas: FormulaSection[] = [
+  {
+    title: 'Normal Balances',
+    content: {
+      type: 'table',
+      headers: ['Account Type', 'Normal Balance', 'Increases with', 'Decreases with'],
+      rows: [
+        ['Asset',     'Debit',  'Debit',  'Credit'],
+        ['Liability', 'Credit', 'Credit', 'Debit'],
+        ['Equity',    'Credit', 'Credit', 'Debit'],
+        ['Revenue',   'Credit', 'Credit', 'Debit'],
+        ['Expense',   'Debit',  'Debit',  'Credit'],
+      ],
+    },
+  },
+];
+
+const ch2Formulas: FormulaSection[] = [
+  {
+    title: 'Cost of Goods Sold (COGS)',
+    content: {
+      type: 'formulas',
+      items: [
+        {
+          label: 'COGS — FIFO',
+          expression: 'Cost of oldest units × Units sold',
+          note: 'First In, First Out — oldest costs leave inventory first',
+        },
+        {
+          label: 'COGS — LIFO',
+          expression: 'Cost of newest units × Units sold',
+          note: 'Last In, First Out — newest costs leave inventory first',
+        },
+      ],
+    },
+  },
+  {
+    title: 'Ending Inventory',
+    content: {
+      type: 'formulas',
+      items: [
+        {
+          label: 'Ending Inventory',
+          expression: 'Beginning Inventory + Purchases − COGS',
+        },
+        {
+          label: 'Ending Inventory — FIFO',
+          expression: 'Cost of newest (remaining) units',
+          note: 'Under FIFO, ending inventory reflects most recent costs',
+        },
+        {
+          label: 'Ending Inventory — LIFO',
+          expression: 'Cost of oldest (remaining) units',
+          note: 'Under LIFO, ending inventory reflects oldest costs',
+        },
+      ],
+    },
+  },
+];
+
+const ch3Formulas: FormulaSection[] = [
+  {
+    title: 'Contribution Margin',
+    content: {
+      type: 'formulas',
+      items: [
+        {
+          label: 'Contribution Margin (CM)',
+          expression: 'Price per Unit − Variable Cost per Unit',
+        },
+        {
+          label: 'CM Ratio (CM%)',
+          expression: 'CM per Unit ÷ Price per Unit',
+          note: 'Expressed as a percentage',
+        },
+      ],
+    },
+  },
+  {
+    title: 'Break-Even Point',
+    content: {
+      type: 'formulas',
+      items: [
+        {
+          label: 'Break-Even Units',
+          expression: 'Fixed Costs ÷ CM per Unit',
+          note: 'Units needed to cover all fixed costs',
+        },
+        {
+          label: 'Break-Even Revenue',
+          expression: 'Fixed Costs ÷ CM Ratio',
+          note: 'Sales dollars needed to break even',
+        },
+      ],
+    },
+  },
+];
 
 export const chapters: ChapterConfig[] = [
   {
@@ -14,6 +112,7 @@ export const chapters: ChapterConfig[] = [
       'Recognize how journal entries affect the accounting equation',
     ],
     icon: '📒',
+    formulas: ch1Formulas,
   },
   {
     id: 'fifo-lifo',
@@ -28,6 +127,7 @@ export const chapters: ChapterConfig[] = [
       'Understand the business implications of each method',
     ],
     icon: '📦',
+    formulas: ch2Formulas,
   },
   {
     id: 'break-even',
@@ -42,6 +142,7 @@ export const chapters: ChapterConfig[] = [
       'Apply break-even thinking to real business decisions',
     ],
     icon: '📊',
+    formulas: ch3Formulas,
   },
   {
     id: 'final-round',
@@ -56,6 +157,7 @@ export const chapters: ChapterConfig[] = [
       'Connect accounting choices to business outcomes',
     ],
     icon: '🏆',
+    formulas: [...ch1Formulas, ...ch2Formulas, ...ch3Formulas],
   },
 ];
 
