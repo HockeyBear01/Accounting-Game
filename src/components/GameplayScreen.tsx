@@ -104,7 +104,7 @@ export function GameplayScreen({
           <div className="flex justify-center pb-2">
             <button
               onClick={onSkip}
-              className="text-xs text-slate-400 hover:text-slate-600 transition-colors py-2 px-4 rounded-lg hover:bg-slate-200"
+              className="text-sm text-slate-400 hover:text-slate-600 transition-colors py-3 px-4 min-h-[44px] rounded-lg hover:bg-slate-200"
             >
               Skip to Next Chapter →
             </button>

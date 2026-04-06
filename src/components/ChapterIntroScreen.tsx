@@ -55,7 +55,7 @@ export function ChapterIntroScreen({ chapter, chapterIndex, totalChapters, onSta
             {!isLastChapter && (
               <button
                 onClick={onSkip}
-                className="w-full mt-3 py-2.5 bg-transparent text-slate-400 rounded-xl font-medium text-xs hover:text-slate-600 hover:bg-slate-50 transition-colors border border-slate-200"
+                className="w-full mt-3 py-3 min-h-[44px] bg-transparent text-slate-400 rounded-xl font-medium text-sm hover:text-slate-600 hover:bg-slate-50 transition-colors border border-slate-200"
               >
                 Skip to Next Chapter →
               </button>

@@ -31,7 +31,7 @@ export function FormulaSheet({ sections, chapterTitle, onClose }: FormulaSheetPr
       />
 
       {/* Panel */}
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[85vh] flex flex-col overflow-hidden animate-fade-in">
+      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[85dvh] sm:max-h-[85vh] flex flex-col overflow-hidden animate-fade-in">
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 bg-primary-50 shrink-0">
           <div className="flex items-center gap-2">
@@ -43,7 +43,7 @@ export function FormulaSheet({ sections, chapterTitle, onClose }: FormulaSheetPr
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-200 hover:text-slate-700 transition-colors"
+            className="w-11 h-11 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-200 hover:text-slate-700 transition-colors"
             aria-label="Close formula sheet"
           >
             ✕
@@ -66,7 +66,7 @@ export function FormulaSheet({ sections, chapterTitle, onClose }: FormulaSheetPr
                         {section.content.headers.map((h, i) => (
                           <th
                             key={i}
-                            className="px-3 py-2 text-xs font-semibold text-slate-600 border-b border-slate-200 whitespace-nowrap"
+                            className="px-3 py-2 text-xs font-semibold text-slate-600 border-b border-slate-200"
                           >
                             {h}
                           </th>
@@ -79,7 +79,7 @@ export function FormulaSheet({ sections, chapterTitle, onClose }: FormulaSheetPr
                           {row.map((cell, ci) => (
                             <td
                               key={ci}
-                              className={`px-3 py-2 text-xs border-b border-slate-100 last:border-b-0 whitespace-nowrap ${
+                              className={`px-3 py-2 text-xs border-b border-slate-100 last:border-b-0 ${
                                 ci === 0 ? 'font-semibold text-slate-700' : 'text-slate-600'
                               } ${
                                 cell === 'Debit' ? 'text-primary-600' :
