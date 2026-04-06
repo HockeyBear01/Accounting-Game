@@ -218,7 +218,7 @@ export const scenarios: Scenario[] = [
       { id: 'd', label: 'Debit Loan Expense $50,000; Credit Cash $50,000' },
     ],
     correctAnswer: 'c',
-    difficulty: 'medium',
+    difficulty: 'easy',
     feedback: {
       correct:
         'Correct. Cash increases (debit) because the company received money, and Notes Payable increases (credit) because the company now has a debt obligation.',
@@ -253,7 +253,7 @@ export const scenarios: Scenario[] = [
       { id: 'd', label: 'Accounts Payable' },
     ],
     correctAnswer: 'c',
-    difficulty: 'medium',
+    difficulty: 'easy',
     feedback: {
       correct:
         'Correct. Prepaid Rent is an asset — the company has paid for a future benefit. Assets increase with debits. The expense is recognized monthly as the rent period is used.',
@@ -358,7 +358,7 @@ export const scenarios: Scenario[] = [
       { id: 'd', label: 'Debit Accumulated Depreciation $4,000; Credit Equipment $4,000' },
     ],
     correctAnswer: 'b',
-    difficulty: 'medium',
+    difficulty: 'easy',
     feedback: {
       correct:
         'Correct. Depreciation Expense is debited (expenses increase with debits) and Accumulated Depreciation is credited — a contra-asset account that reduces the carrying value of the equipment.',
@@ -871,7 +871,7 @@ export const scenarios: Scenario[] = [
     type: 'multiple-choice',
     options: [
       { id: 'a', label: '1,000 units (no change needed)' },
-      { id: 'b', label: '1,500 units' },
+      { id: 'b', label: '1,250 units' },
       { id: 'c', label: '2,000 units' },
       { id: 'd', label: '1,250 units' },
     ],
@@ -964,7 +964,7 @@ export const scenarios: Scenario[] = [
       { id: 'd', label: 'No — the contribution margin is too low' },
     ],
     correctAnswer: 'a',
-    difficulty: 'medium',
+    difficulty: 'easy',
     visualData: {
       type: 'breakeven',
       fixedCosts: 45000,
@@ -1260,7 +1260,7 @@ export const scenarios: Scenario[] = [
       { id: 'd', label: 'Accounts Payable' },
     ],
     correctAnswer: 'c',
-    difficulty: 'easy',
+    difficulty: 'medium',
     feedback: {
       correct:
         'Correct. Cash decreases (credit) as it is paid out, and Equipment increases (debit) as a new long-term asset is acquired.',
@@ -1753,7 +1753,7 @@ export const scenarios: Scenario[] = [
       { id: 'd', label: '$19,900' },
     ],
     correctAnswer: 'c',
-    difficulty: 'medium',
+    difficulty: 'hard',
     feedback: {
       correct:
         'Correct. Fixed costs = Warehouse rent ($8,000) + Sales manager salary ($6,000) + Equipment lease ($2,400) = $16,400. Packaging ($1.50/unit) and shipping ($3.00/unit) are variable — they change with volume.',
