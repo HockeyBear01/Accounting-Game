@@ -2519,4 +2519,138 @@ export const scenarios: Scenario[] = [
       incorrect: { profit: -2000, reputation: -4 },
     },
   },
+
+  // CHAPTER 4 — FINAL ROUND / INTEGRATED EXTENDED (3 new)
+
+  {
+    id: 'fr3-01',
+    reviewTip: 'LIFO raises COGS in inflationary periods → lowers taxable income → lowers cash tax payments. Reported profit drops, but real cash flow improves.',
+    chapterId: 'final-round',
+    title: 'FIFO-to-LIFO Switch: Cash Flow Impact',
+    description:
+      'NorthStar is considering switching from FIFO to LIFO mid-year. Material prices have been rising steadily. The CFO argues, "LIFO will hurt our reported profit but improve our cash flow." The most recent purchases cost $30/unit while older inventory layers were purchased at $22/unit. The tax rate is 25%.',
+    question: 'Is the CFO correct that the switch to LIFO will improve cash flow, and why?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: 'No — LIFO always reduces cash flow because it raises COGS' },
+      { id: 'b', label: 'Yes — LIFO assigns higher (recent) costs to COGS, lowering taxable income and reducing cash tax payments' },
+      { id: 'c', label: 'No — the inventory method has no effect on cash flow because it is a non-cash accounting choice' },
+      { id: 'd', label: 'Yes — LIFO increases revenue because customers pay more for newer inventory' },
+    ],
+    correctAnswer: 'b',
+    difficulty: 'hard',
+    visualData: {
+      type: 'inventory',
+      purchases: [
+        { date: 'Jan', units: 500, unitCost: 22 },
+        { date: 'Mar', units: 500, unitCost: 25 },
+        { date: 'Jun', units: 500, unitCost: 28 },
+        { date: 'Sep', units: 500, unitCost: 30 },
+      ],
+    },
+    feedback: {
+      correct:
+        'Correct. In a rising-price environment, LIFO assigns the most recent (highest) costs to COGS. Higher COGS → lower pretax income → lower tax bill → more cash retained. The journal entry impact: COGS is debited at higher LIFO costs and Inventory is credited, flowing the newest costs to the income statement. The tax savings are real cash.',
+      incorrect:
+        'Not quite. LIFO assigns the most recent (expensive) costs to COGS. Higher COGS → lower pretax income → lower income tax payments. While reported profit falls, the company pays less in taxes, which is a real cash saving. Revenue is unaffected — only cost allocation changes. The key journal entries remain the same (Debit COGS / Credit Inventory), but the amounts are higher under LIFO.',
+      keyInsight:
+        'The inventory method is not "just an accounting choice" — it directly affects taxable income and therefore cash tax payments. In inflationary periods, LIFO creates real tax savings even though it lowers reported earnings.',
+      commonMistake:
+        'Confusing reported profit with cash flow. Lower reported profit ≠ lower cash flow. Under LIFO, profit drops but cash flow improves because taxes (a real cash outflow) decrease. The tax savings are the mechanism.',
+      whyItMatters:
+        'This is one of the most important strategic decisions in inventory accounting. Companies like Caterpillar use LIFO specifically to reduce tax payments during inflationary periods, accepting lower reported earnings as the trade-off.',
+      explainMore:
+        'Example: Suppose NorthStar sells 500 units.\nFIFO COGS: 500 × $22 (oldest) = $11,000.\nLIFO COGS: 500 × $30 (newest) = $15,000.\nDifference: $4,000 higher COGS under LIFO.\nTax saving: $4,000 × 25% = $1,000 less in cash taxes paid.\n\nJournal entries are structurally identical under both methods:\n  Debit COGS / Credit Inventory\nBut the dollar amounts differ — LIFO debits a higher COGS and credits more from Inventory.\n\nThe cash flow statement reflects the lower tax payment as improved operating cash flow.',
+    },
+    metricEffects: {
+      correct: { profit: 3000, cash: 5000, reputation: 7 },
+      incorrect: { profit: -2000, reputation: -4 },
+    },
+  },
+
+  {
+    id: 'fr3-02',
+    reviewTip: 'For special orders with spare capacity, only variable costs are relevant. Accept if the special price exceeds variable cost per unit — fixed costs are already covered by regular sales.',
+    chapterId: 'final-round',
+    title: 'Special Order: Relevant Cost Decision',
+    description:
+      'NorthStar sells 600 units at $90 each. Variable costs are $40 per unit. Fixed costs are $25,000 per month. A new customer offers to buy 100 additional units at $50 each — well below the normal $90 price. NorthStar has spare production capacity.',
+    question: 'Should NorthStar accept the special order?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: 'No — the $50 price is below the full cost per unit of $81.67 ($40 variable + $41.67 fixed per unit), so the order loses money' },
+      { id: 'b', label: 'No — accepting below-price orders always reduces overall profitability' },
+      { id: 'c', label: 'Yes — the $50 price exceeds the $40 variable cost, contributing $10 per unit ($1,000 total) toward profit' },
+      { id: 'd', label: 'Yes — but only if NorthStar raises the price on regular customers to offset the discount' },
+    ],
+    correctAnswer: 'c',
+    difficulty: 'hard',
+    visualData: {
+      type: 'breakeven',
+      fixedCosts: 25000,
+      variableCostPerUnit: 40,
+      pricePerUnit: 90,
+    },
+    feedback: {
+      correct:
+        'Correct. With spare capacity, fixed costs are irrelevant to the special order — they\'re already being incurred. The only relevant cost is the $40 variable cost per unit. Since $50 > $40, each unit contributes $10 to profit. Total incremental profit = 100 × $10 = $1,000.',
+      incorrect:
+        'Not quite. The key is relevant cost analysis. Fixed costs ($25,000) are sunk — they don\'t change whether the order is accepted or not. With spare capacity, only the $40 variable cost matters. Since $50 > $40, each special-order unit adds $10 to profit. Incremental analysis: Revenue +$5,000 − Variable costs +$4,000 = +$1,000 profit.',
+      keyInsight:
+        'When a company has spare capacity, the relevant cost for a special order is only the variable (incremental) cost. Fixed costs are already covered by regular operations and should not influence the accept/reject decision.',
+      commonMistake:
+        'Allocating fixed costs to the special order and concluding it\'s unprofitable. The "full cost" of $81.67 per unit includes $41.67 of fixed cost that won\'t change regardless of the decision. Using full cost for special-order decisions leads to rejecting profitable opportunities.',
+      whyItMatters:
+        'Relevant cost thinking is a cornerstone of managerial accounting. Managers who understand which costs change with a decision make better choices than those who rely on fully allocated costs for every situation.',
+      explainMore:
+        'Incremental analysis:\n                        Without Order    With Order    Difference\nRevenue (regular):     600 × $90 = $54,000    $54,000         $0\nRevenue (special):                $0     100 × $50 = $5,000    +$5,000\nVariable costs:       600 × $40 = $24,000    700 × $40 = $28,000    +$4,000\nFixed costs:                  $25,000        $25,000         $0\nOperating income:               $5,000         $6,000    +$1,000\n\nThe special order adds $1,000 to profit. Fixed costs are unchanged — only the incremental revenue ($5,000) and incremental variable costs ($4,000) matter.',
+    },
+    metricEffects: {
+      correct: { profit: 3000, cash: 5000, reputation: 7 },
+      incorrect: { profit: -2000, reputation: -4 },
+    },
+  },
+
+  {
+    id: 'fr3-03',
+    reviewTip: 'Combine journal entry mechanics (Debit Cash / Credit Sales; Debit COGS / Credit Inventory), gross profit calculation, and break-even analysis to get the full financial picture of a transaction.',
+    chapterId: 'final-round',
+    title: 'Integrated Journal Entry, Gross Profit & Break-Even',
+    description:
+      'NorthStar sells 400 units at $100 each for cash. Under LIFO, the cost of goods sold for this batch is $28,000. Monthly fixed costs are $18,000 and variable costs are $70 per unit.',
+    question: 'Which of the following correctly states the journal entries, gross profit, and break-even status?',
+    type: 'multiple-choice',
+    options: [
+      { id: 'a', label: 'Debit Cash $40,000 / Credit Sales $40,000; Debit COGS $28,000 / Credit Inventory $28,000. Gross profit = $12,000. Break-even is 600 units, so NorthStar is below break-even.' },
+      { id: 'b', label: 'Debit Accounts Receivable $40,000 / Credit Sales $40,000; Debit COGS $28,000 / Credit Inventory $28,000. Gross profit = $12,000. Break-even is 400 units, so NorthStar is at break-even.' },
+      { id: 'c', label: 'Debit Cash $40,000 / Credit Sales $40,000; Debit COGS $28,000 / Credit Inventory $28,000. Gross profit = $12,000. Break-even is 450 units, so NorthStar is below break-even.' },
+      { id: 'd', label: 'Debit Cash $40,000 / Credit Sales $40,000; Debit Inventory $28,000 / Credit COGS $28,000. Gross profit = $12,000. Break-even is 600 units, so NorthStar is below break-even.' },
+    ],
+    correctAnswer: 'a',
+    difficulty: 'hard',
+    visualData: {
+      type: 'breakeven',
+      fixedCosts: 18000,
+      variableCostPerUnit: 70,
+      pricePerUnit: 100,
+    },
+    feedback: {
+      correct:
+        'Correct. Entry 1 (revenue): Debit Cash $40,000 / Credit Sales $40,000 (cash sale). Entry 2 (COGS): Debit COGS $28,000 / Credit Inventory $28,000 (asset → expense). Gross profit = $40,000 − $28,000 = $12,000. Break-even = $18,000 ÷ ($100 − $70) = $18,000 ÷ $30 = 600 units. At 400 units sold, NorthStar is 200 units below break-even.',
+      incorrect:
+        'Not quite. For a cash sale: Debit Cash (asset up) / Credit Sales (revenue up). For COGS: Debit COGS (expense up) / Credit Inventory (asset down). Gross profit = Revenue − COGS = $40,000 − $28,000 = $12,000. Break-even uses CM: $100 − $70 = $30 per unit. Units needed = $18,000 ÷ $30 = 600 units. Since only 400 were sold, NorthStar is below break-even.',
+      keyInsight:
+        'This question integrates three core skills: (1) journal entry mechanics for sales transactions, (2) gross profit calculation from LIFO COGS, and (3) CVP break-even analysis. Real-world accounting requires fluency across all three simultaneously.',
+      commonMistake:
+        'Watch for reversed COGS entries (Debit Inventory / Credit COGS is backwards — it would increase inventory and reduce expense). Also, using COGS per unit ($70) instead of variable cost per unit ($70) for break-even happens to give the same answer here, but note that LIFO COGS ($28,000 ÷ 400 = $70) may differ from variable cost in other scenarios.',
+      whyItMatters:
+        'Finance Directors must connect the dots between recording transactions correctly, measuring profitability, and assessing whether sales volume is sufficient to cover costs. This integrated thinking separates bookkeepers from strategic financial analysts.',
+      explainMore:
+        'Journal entries:\n1. Debit Cash $40,000 / Credit Sales Revenue $40,000\n   (Recognizes the cash sale — Cash goes up, Revenue goes up)\n2. Debit COGS $28,000 / Credit Inventory $28,000\n   (Moves inventory cost to the income statement — Expense goes up, Asset goes down)\n\nGross profit: $40,000 − $28,000 = $12,000\n\nBreak-even analysis:\nCM per unit = $100 − $70 = $30\nBreak-even units = $18,000 ÷ $30 = 600 units\nActual sales = 400 units → 200 units short of break-even\nOperating income = (400 × $30) − $18,000 = $12,000 − $18,000 = −$6,000 (a loss)\n\nNote: Gross profit ($12,000) is positive, but operating income is negative after fixed costs.',
+    },
+    metricEffects: {
+      correct: { profit: 3000, cash: 5000, reputation: 7 },
+      incorrect: { profit: -2000, reputation: -4 },
+    },
+  },
 ];
