@@ -74,7 +74,6 @@ export function StartScreen({ onStart }: StartScreenProps) {
 
         {/* Attribution */}
         <div className="mt-12 text-primary-400 text-xs space-y-1">
-          <p>Created by Jonas Lang and Jaime Gandy</p>
           <p>BUSI 7230: Cost Analysis and Systems</p>
         </div>
       </div>
